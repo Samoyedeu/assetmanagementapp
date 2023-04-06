@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+* {
+    font-family: 'Manrope', sans-serif;
+    box-sizing: border-box;
+    
+}
+
+html,
+body {
+    background-image: linear-gradient(to right bottom, #4112ff, #006cff, #0099ff, #00bcff, #00dafd, #00dbfb, #00dcf8, #00ddf6, #00c3fb, #00a5f7, #5684e5, #845ec2);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 0 40px;
+    color: white;
+    height: 90px;
+}   
+
+header .logo {
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+#home {
+    height: calc(100vh-90px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#home .info-section{
+    width: 50%;
+}
+
+#home .info-section h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 2rem;
+    line-height: 4.5rem;
+}
+
+
+#home .info-section h4 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: white;
+    margin-bottom: 2rem;
+    letter-spacing: normal;
+}
+
+#home .info-section .actions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#home .photo {
+    padding-left: 5rem;
+    margin-bottom: auto;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown_hover {
+    display: inline-block;
+    padding: 10px;
+    color: #6D008C;
+    background-color: transparent;
+    border: solid;
+    border-width: 4px;
+    border-color: #6D008C;
+}
+
+.dropdown_hover:hover{
+    background: rgba(255, 255, 255, 0.534);
+}
+
+.dropdown_menu{
+    position: absolute;
+    display: none;
+    min-width: 200px;
+    background: white;
+    color:inherit;
+    box-shadow: 0 3px 2px white;
+}
+
+.dropdown:hover .dropdown_menu {
+    display: block;
+}
+
+.dropdown_menu a{
+    display: block;
+    margin: auto;
+    padding: 0.5rem;
+    color: #76009d !important;
+    text-decoration: none;
+    border: none;
+    border-top: solid 1px rgb(197, 197, 197);
+}
+    
+.dropdown_menu a:hover {
+    background: rgba(176, 176, 176, 0.534);
+}

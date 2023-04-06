@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Register Asset</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form action="register_processing.jsp">
+            Asset Name:<input type="text" id="asset_name" name="asset_name"><br>
+            Description: <input type="text" id="description" name="description"><br>
+            Acquisition Date: <input type="date" id="acq_date" name="acq_date"><br>
+            For Rent?: <input type="number" id="forrent" name="forrent" min="0" max="1"><br>
+            Value: <input type="text" id="value" name="value"><br>
+            <label for="type">Type:</label>
+                <select name="type" id="type">
+                  <option value="P">Property</option>
+                  <option value="E">Equipment</option>
+                  <option value="F">Furniture and Fixtures</option>
+                  <option value="O">Other Assets</option>
+                </select><br>
+            <label for="status">Status:</label>
+                <select name="status" id="type">
+                  <option value="W">Working Condition</option>
+                  <option value="DE">Deteriorated</option>
+                  <option value="FR">For Repair</option>
+                  <option value="FD">For Disposal</option>
+                  <option value="DI">Disposed</option>
+                </select><br>
+            Location: <input type="text" id="location" name="location"><br>
+            X-Coordinate: <input type="text" id="location_mapx" name="location_mapx"><br>
+            Y-Coordinate: <input type="text" id="location_mapy" name="location_mapy"><br>
+            Inclusion Asset ID: <input type="number" id="location_assetid" name="location_assetid"><br>
+            Homeowner Association Name: <input type="text" id="hoaname" name="hoaname"><br>
+            
+            <input type="submit" value="Submit">
+            
+        </form>
+    </body>
+</html>
