@@ -1,6 +1,6 @@
 <%-- 
-    Document   : deleteassetactivity
-    Created on : 04 6, 23, 7:28:59 PM
+    Document   : completeassetactivity
+    Created on : 04 6, 23, 10:03:00 PM
     Author     : ccslearner
 --%>
 
@@ -10,14 +10,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Delete an Asset Activity</title>
+        <title>Complete an Asset Activity</title>
     </head>
     <body>
-        <form action="deleteactivity_processing.jsp">
+        <form action="completeactivity_processing.jsp">
             <jsp:useBean id= "A" class="assetmanagement.assetactivity" scope="session" />
             Asset Activity:<select id="assetactivity" name="assetactivity">
                 <%
-                    A.assetactivity_for_deletion();
+                    A.activity_for_update();
                     for(int i = 0; i < A.asset_activityidList.size(); i++){
                 %>
                 <option value="<%=A.asset_activityidList.get(i)%>"><%=A.descriptionList.get(i)%></option>
@@ -25,7 +25,7 @@
                     }
                 %>
             </select><br>
-            <input type="submit" value="Delete Asset Activity">
+            <input type="submit" value="Dispose Asset">
         
     </body>
 </html>
