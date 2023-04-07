@@ -4,21 +4,48 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>Asset Management Application</title>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Asset Management Application</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="reset.css" />
   </head>
   <body>
-    <a href="register.html">            Register an Asset </a><br />
-    <a href="updateasset.jsp">          Update Asset Information </a><br />
-    <a href="deletewrongasset.jsp">    Deleting a Wrongly Encoded Asset </a><br />
-    <a href="disposeasset.jsp">        Dispose an Asset </a><br />
-    <a href="recordact.html">           Record Asset Activity </a><br />
-    <a href="updateactivity.jsp">       Update Asset Activity Information </a><br />
-    <a href="completeassetactivity.jsp">         Complete Asset Activity </a><br />
-    <a href="deleteassetactivity.jsp">           Delete Asset Activity</a><br />
+    <header>
+      <div class="logo">Joenh Co. Realty</div>
+    </header>
+
+    <div class="container">
+      <section id="home">
+        <div class="info-section">
+          <h1>Asset Management</h1>
+          <h4>What would you like to do today?</h4>
+          <div class="dropdown">
+            <button class="dropdown_hover">Select a Service</button>
+            <div class="dropdown_menu">
+              <a href="register.html" class="btn-action">Register Asset</a>
+              <a href="updateasset.jsp" class="btn-action">Update Asset</a>
+              <a href="deletewrongasset.jsp" class="btn-action">Delete Asset</a>
+              <a href="disposeasset.jsp" class="btn-action">Dispose Asset</a>
+              <a href="recordact.html" class="btn-action">Record Activity</a>
+              <a href="updateactivity.jsp">
+                Update Asset Activity Information </a
+              ><br />
+              <a href="completeassetactivity.jsp"> Complete Asset Activity </a
+              ><br />
+              <a href="deleteassetactivity.jsp"> Delete Asset Activity</a><br />
+            </div>
+          </div>
+        </div>
+        <div class="photo">
+          <img src="./assets/hero.png" alt="" class="hero" />
+        </div>
+      </section>
+    </div>
   </body>
 </html>
