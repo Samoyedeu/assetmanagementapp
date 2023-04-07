@@ -165,7 +165,45 @@ header .pages li a{
     align-items: center;
     background: rgba(1, 0, 0, 0.376);
     margin: 0 auto;
-    
+}
+
+.record_form{
+    background-color: rgba(1, 0, 0, 0.376);
+    backdrop-filter: blur(5px);
+    border-radius: 2.5rem;
+    width: 40rem;
+    padding-left: 0%;
+    padding: 40px;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(1, 0, 0, 0.376);
+    margin: 0 auto;
+}
+
+.record_form #first{
+    margin-right: 40px;
+}
+
+.record_form #second {
+    margin-left: 40px;
+}
+
+.record_form #second input,
+.record_form .select_class,
+.record_form #first .input-field{
+    width: 110%;
+}
+
+.record_form .input-field{
+    width: 100%;
+}
+
+.asset_form .formEdit {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .asset_form .formEdit {
@@ -208,6 +246,7 @@ header .pages li a{
     margin-bottom: 1rem;
 }
 
+
 .titleLabel {
     margin-bottom: 5px;
 }
@@ -218,6 +257,10 @@ header .pages li a{
     background-color: white;
     border: none;
     cursor: pointer;
+}
+
+#record_submit{
+    margin-top: 20px;
 }
 
 .btn-submit:hover {
