@@ -10,10 +10,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Update Asset Information</title>
+        <title>Update Asset Activity Information</title>
     </head>
     <body>
-        <form action="updateact_processing.jsp">
+        <form action="updateactivity_processing.jsp">
             <jsp:useBean id= "A" class="assetmanagement.assetactivity" scope="session" />
             Activity:<select id="activity" name="activity">
                 <%
@@ -25,9 +25,7 @@
                     }
                 %>
             </select><br>
-            Asset ID:<input type="number" id="assetid" name="assetid"><br>
             Description: <input type="text" id="description" name="description"><br>
-            HOA Officer ID: <input type="number" id="hoa_officer" name="hoa_officer"><br>
             Tent Start Date: <input type="date" id="tent_start" name="tent_start"><br>
             Tent End Date: <input type="date" id="tent_end" name="tent_end"><br>
             Actual Start Date: <input type="date" id="actual_start" name="actual_start"><br>

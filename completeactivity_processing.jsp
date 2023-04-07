@@ -10,11 +10,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Complete an Asset Activity</title>
+        <title>Complete an Asset Activity Processing</title>
     </head>
     <body>
         <form action="index.html">
-            <jsp:useBean id= "A" class="assetmanagement.asset" scope="session" />
+            <jsp:useBean id= "A" class="assetmanagement.assetactivity" scope="session" />
             <% //Receive the values from completeassetactivity.jsp
             A.asset_activityid = Integer.parseInt(request.getParameter("assetactivity"));
             int status = A.complete_assetactivity();

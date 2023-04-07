@@ -17,7 +17,7 @@
             <jsp:useBean id= "A" class="assetmanagement.assetactivity" scope="session" />
             Asset Activity:<select id="assetactivity" name="assetactivity">
                 <%
-                    A.activity_for_update();
+                    A.assetactivity_for_completion();
                     for(int i = 0; i < A.asset_activityidList.size(); i++){
                 %>
                 <option value="<%=A.asset_activityidList.get(i)%>"><%=A.descriptionList.get(i)%></option>
@@ -25,7 +25,7 @@
                     }
                 %>
             </select><br>
-            <input type="submit" value="Dispose Asset">
+            <input type="submit" value="Complete Activity">
         
     </body>
 </html>

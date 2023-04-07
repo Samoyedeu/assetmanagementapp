@@ -13,12 +13,10 @@
         <title>Update Asset Activity Processing</title>
     </head>
     <body>
-        <form>
+        <form action="index.html">
             <jsp:useBean id= "A" class="assetmanagement.assetactivity" scope="session" />
             <% //Receive the values from updateactivity.jsp
-                Integer v_assetid = Integer.parseInt(request.getParameter("assetid"));
                 String v_description = request.getParameter("description");
-                Integer v_hoa_officer = Integer.parseInt(request.getParameter("hoa_officer"));
                 
                 java.sql.Date v_tent_start_date = java.sql.Date.valueOf(request.getParameter("tent_start"));
                 java.sql.Date v_tent_end_date = java.sql.Date.valueOf(request.getParameter("tent_start"));
@@ -30,18 +28,17 @@
                 Integer v_orno = Integer.parseInt(request.getParameter("orno"));
                 String v_status = request.getParameter("status");
 
-                A.assetid = v_assetid;
                 A.description = v_description;
-                A.hoa_officer = v_hoa_officer;
                 A.tent_start = v_tent_start_date;
                 A.tent_end = v_tent_end_date;
                 A.actual_start = v_actual_start_date;
                 A.actual_end = v_actual_end_date;
                 A.orno = v_orno;
                 A.status = v_status;
+                A.asset_activityid = Integer.parseInt(request.getParameter("activity"));
 
 
-                int status = A.update_assetactivity();
+                int status = A.update_activity();
                 if(status == 1){
             %>
                 <h1>Updating Asset Activity Successful</h1>

@@ -10,12 +10,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Dispose Asset</title>
+        <title>Delete Wrong Asset Processing</title>
     </head>
     <body>
         <form action="index.html">
             <jsp:useBean id= "A" class="assetmanagement.asset" scope="session" />
-            <% //Receive the values from disposeasset.jsp
+            <% 
             A.assetid = Integer.parseInt(request.getParameter("asset"));
             int status = A.dispose_asset();
             if(status == 1){

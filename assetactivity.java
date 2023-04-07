@@ -50,8 +50,8 @@ public class assetactivity {
             System.out.println("Connection Successful");
             
             // 2. Prepare SQL Statement
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE FROM asset_activity SET status = 'C' WHERE asset_activityid	= ?'");
-            pstmt.setString(1, status);
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE asset_activity SET status = 'C' WHERE asset_activityid	= ?");
+            pstmt.setInt(1, asset_activityid);
             pstmt.executeUpdate();
             
             pstmt.close();
@@ -193,24 +193,24 @@ public class assetactivity {
         }
     }
     
-    public int update_assetactivity(){
+    public int update_activity(){
         try {
             Connection conn;
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbhomeowners?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             System.out.println("Connection Successful");
             
             // 2. Prepare SQL Statement
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE assetactivity SET assetid = ?, description = ?, hoa_officer = ?, tent_start = ?, tent_end = ?, actual_start = ?, actual_end = ?, orno = ?, status = ?  WHERE description = ?");
-            pstmt.setInt(1, asset_activityid);
-            pstmt.setInt(2, assetid);
-            pstmt.setString(3, description);
-            pstmt.setInt(4, hoa_officer);
-            pstmt.setDate(5, tent_start);
-            pstmt.setDate(6, tent_end);
-            pstmt.setDate(7, actual_start);
-            pstmt.setDate(8, actual_end);
-            pstmt.setInt(9, orno);
-            pstmt.setString(10, status);
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE asset_activity SET assetid = ?, description = ?, hoa_officer = ?, tent_start = ?, tent_end = ?, actual_start = ?, actual_end = ?, orno = ?, status = ?  WHERE asset_activityid = ?");
+            pstmt.setInt(1, assetid);
+            pstmt.setString(2, description);
+            pstmt.setInt(3, hoa_officer);
+            pstmt.setDate(4, tent_start);
+            pstmt.setDate(5, tent_end);
+            pstmt.setDate(6, actual_start);
+            pstmt.setDate(7, actual_end);
+            pstmt.setInt(8, orno);
+            pstmt.setString(9, status);
+            pstmt.setInt(10, asset_activityid);
             pstmt.executeUpdate();
             
             pstmt.close();
@@ -327,6 +327,7 @@ public class assetactivity {
     
     public static void main (String args[]){
         assetactivity A = new assetactivity();
+        /*
         A.assetid = 1;
         A.description = "Basketballx2 ang sarapx2 mag basketball";
         A.hoa_officer = 3;
@@ -335,9 +336,9 @@ public class assetactivity {
         A.actual_start = java.sql.Date.valueOf("2023-05-06");
         A.tent_end = java.sql.Date.valueOf("2023-10-06");
         A.orno = 1;
-        A.status = "S";
+        A.status = "S";*/
         
-        System.out.println(A.record_assetactivity());
+        System.out.println(A.complete_assetactivity());
         
         
     }

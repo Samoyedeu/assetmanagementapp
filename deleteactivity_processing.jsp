@@ -15,7 +15,7 @@
     <body>
         <form action="index.html">
             <jsp:useBean id= "A" class="assetmanagement.assetactivity" scope="session" />
-            <% //Receive the values from register.html
+            <% 
             A.asset_activityid = Integer.parseInt(request.getParameter("assetactivity"));
             int status = A.delete_assetactivity();
             if(status == 1){
