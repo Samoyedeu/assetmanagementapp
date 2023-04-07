@@ -11,6 +11,12 @@ body {
     background-image: linear-gradient(to right bottom, #4112ff, #006cff, #0099ff, #00bcff, #00dafd, #00dbfb, #00dcf8, #00ddf6, #00c3fb, #00a5f7, #5684e5, #845ec2);
 }
 
+.register_body{
+    
+    background-image: linear-gradient(to left bottom, #4112ff, #005aff, #0080ff, #009fff, #5bbaff, #67bcff, #71bdff, #7bbfff, #5ca7ff, #598aff, #7167fd, #9232e8, 598aff), url(./assets/hero.png);
+
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -24,6 +30,18 @@ header {
 header .logo {
     font-weight: bold;
 }
+
+header .pages ul{
+    display: flex;
+    list-style-type: none;
+}
+
+header .pages li a{
+    color: white;
+    text-decoration: none;
+    padding-right: 20px;
+}
+
 
 .container {
     max-width: 1400px;
@@ -39,6 +57,7 @@ header .logo {
 
 #home .info-section{
     width: 50%;
+    padding-bottom: 300px;
 }
 
 #home .info-section h1 {
@@ -91,7 +110,7 @@ header .logo {
 .dropdown_menu{
     position: absolute;
     display: none;
-    min-width: 200px;
+    min-width: 300px;
     background: white;
     color:inherit;
     box-shadow: 0 3px 2px white;
@@ -113,4 +132,95 @@ header .logo {
     
 .dropdown_menu a:hover {
     background: rgba(176, 176, 176, 0.534);
+}
+
+.inAction {
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    background-color: #4112ff;
+    border: none;
+    cursor: pointer;
+}
+
+.inAction:hover{
+    background-color: #5328ff;
+}
+
+.inAction a{
+    text-decoration: none;
+    color: white;
+}
+
+.asset_form {    
+    background-color: rgba(1, 0, 0, 0.376);
+    backdrop-filter: blur(5px);
+    border-radius: 2.5rem;
+    width: 37rem;
+    padding: 30px;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(1, 0, 0, 0.376);
+    margin: 0 auto;
+    
+}
+
+.asset_form .formEdit {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.col1{
+    
+    margin-left: 2.5rem;
+    margin: right 2.5rem;;
+    display: inline-block;
+}
+
+.asset_form h4 {
+    margin-top: 5px;
+}
+
+.form_class {
+    color: white;
+    align-self: center;
+}
+
+.input-field input{
+    background-color: transparent;
+    border-style: solid;
+    border-width: 0.12rem;
+    border-radius: 0.3rem;
+    border-color: white;
+    height: 2rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.select_class {
+    height: 2rem;
+    border-radius:4px;border:1px;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.titleLabel {
+    margin-bottom: 5px;
+}
+
+.btn-submit {
+    height: 2rem;
+    width: 100%;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #005aff;
+    color: white;
 }
