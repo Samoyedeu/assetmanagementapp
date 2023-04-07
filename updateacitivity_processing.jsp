@@ -1,5 +1,5 @@
 <%-- 
-    Document   : record_processing
+    Document   : updateactivity_processing
     Created on : 04 6, 23, 5:30:16 PM
     Author     : ccslearner
 --%>
@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Record Asset Activity Processing</title>
+        <title>Update Asset Activity Processing</title>
     </head>
     <body>
         <form>
@@ -41,13 +41,13 @@
                 A.status = v_status;
 
 
-                int status = A.record_assetactivity();
+                int status = A.update_assetactivity();
                 if(status == 1){
             %>
-                <h1>Recording Asset Activity Successful</h1>
+                <h1>Updating Asset Activity Successful</h1>
             <% } else {
             %>
-                <h1>Recording Asset Activity Failed</h1>
+                <h1>Updating Asset Activity Failed</h1>
             <% }
             %>
             <input type="submit" value="Return to Menu">

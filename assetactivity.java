@@ -193,7 +193,7 @@ public class assetactivity {
         }
     }
     
-    public int update_activity(){
+    public int update_assetactivity(){
         try {
             Connection conn;
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbhomeowners?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
