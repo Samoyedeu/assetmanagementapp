@@ -18,9 +18,9 @@
             Asset:<select id="asset" name="asset">
                 <%
                     A.asset_for_update();
-                    for(int i = 0; i < A.assetidlist.size(); i++){
+                    for(int i = 0; i < A.asset_idlist.size(); i++){
                 %>
-                <option value="<%=A.assetidlist.get(i)%>"><%=A.namelist.get(i)%></option>
+                <option value="<%=A.asset_idlist.get(i)%>"><%=A.asset_namelist.get(i)%></option>
                 <%
                     }
                 %>
@@ -40,16 +40,13 @@
             <label for="status">Status:</label>
                 <select name="status" id="type">
                   <option value="W">Working Condition</option>
-                  <option value="DE">Deteriorated</option>
-                  <option value="FR">For Repair</option>
-                  <option value="FD">For Disposal</option>
-                  <option value="DI">Disposed</option>
+                  <option value="D">Deteriorated</option>
+                  <option value="P">For Repair</option>
+                  <option value="S">For Disposal</option>
                 </select><br>
-                            </select><br>
-            Location: <input type="text" id="location" name="location"><br>
-            X-Coordinate: <input type="text" id="location_mapx" name="location_mapx"><br>
-            Y-Coordinate: <input type="text" id="location_mapy" name="location_mapy"><br>
-            Inclusion Asset ID: <input type="number" id="location_assetid" name="location_assetid"><br>
+            Location Latitude: <input type="text" id="location_mapx" name="location_mapx"><br>
+            Location Longitude: <input type="text" id="location_mapy" name="location_mapy"><br>
+            Enclosing Asset: <input type="number" id="location_assetid" name="location_assetid"><br>
                 
             <input type="submit" value="Submit">
         </form>

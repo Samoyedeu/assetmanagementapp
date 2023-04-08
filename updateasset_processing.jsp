@@ -23,22 +23,20 @@
             Float v_value = Float.parseFloat(request.getParameter("value"));
             String v_type = request.getParameter("type");
             String v_status = request.getParameter("status");
-            String v_location = request.getParameter("location");
             String v_location_mapx = request.getParameter("location_mapx");
             String v_location_mapy = request.getParameter("location_mapy");
-            Integer v_location_assetid = Integer.parseInt(request.getParameter("location_assetid"));
-            A.name = v_name;
-            A.description = v_description;
-            A.acq_date = v_acq_date;
+            String v_location_assetid = request.getParameter("location_assetid");
+            A.asset_name = v_name;
+            A.asset_description = v_description;
+            A.acquisition_date = v_acq_date;
             A.forrent = v_forrent;
-            A.value = v_value;
-            A.type = v_type;
+            A.asset_value = v_value;
+            A.type_asset = v_type;
             A.status = v_status;
-            A.location = v_location;
-            A.location_mapx = v_location_mapx;
-            A.location_mapy = v_location_mapy;
-            A.location_assetid = v_location_assetid;
-            A.assetid = Integer.parseInt(request.getParameter("asset"));
+            A.loc_lattitude = v_location_mapx;
+            A.loc_longitude = v_location_mapy;
+            A.enclosing_asset = v_location_assetid;
+            A.asset_id = Integer.parseInt(request.getParameter("asset"));
             int status = A.update_asset();
             if(status == 1){
             %>

@@ -16,30 +16,29 @@
         <form action="index.html">
             <jsp:useBean id= "A" class="assetmanagement.asset" scope="session" />
             <% //Receive the values from register.html
-            String v_name = request.getParameter("asset_name");
-            String v_description = request.getParameter("description");
-            java.sql.Date v_acq_date = java.sql.Date.valueOf(request.getParameter("acq_date"));
+            A.enclosing_asset = null;
+            String v_asset_name = request.getParameter("asset_name");
+            String v_asset_description = request.getParameter("description");
+            java.sql.Date v_acquisition_date = java.sql.Date.valueOf(request.getParameter("acq_date"));
             Integer v_forrent = Integer.parseInt(request.getParameter("forrent"));
-            Float v_value = Float.parseFloat(request.getParameter("value"));
-            String v_type = request.getParameter("type");
+            Float v_asset_value = Float.parseFloat(request.getParameter("value"));
+            String v_type_asset = request.getParameter("type");
             String v_status = request.getParameter("status");
-            String v_location = request.getParameter("location");
-            String v_location_mapx = request.getParameter("location_mapx");
-            String v_location_mapy = request.getParameter("location_mapy");
-            Integer v_location_assetid = Integer.parseInt(request.getParameter("location_assetid"));
-            String v_hoaname = request.getParameter("hoaname");
-            A.name = v_name;
-            A.description = v_description;
-            A.acq_date = v_acq_date;
+            String v_loc_lattitude = request.getParameter("location_mapx");
+            String v_loc_longitude = request.getParameter("location_mapy");
+            String v_enclosing_asset = request.getParameter("location_assetid");
+            String v_hoa_name = request.getParameter("hoaname");
+            A.asset_name = v_asset_name;
+            A.asset_description = v_asset_description;
+            A.acquisition_date = v_acquisition_date;
             A.forrent = v_forrent;
-            A.value = v_value;
-            A.type = v_type;
+            A.asset_value = v_asset_value;
+            A.type_asset = v_type_asset;
             A.status = v_status;
-            A.location = v_location;
-            A.location_mapx = v_location_mapx;
-            A.location_mapy = v_location_mapy;
-            A.location_assetid = v_location_assetid;
-            A.hoaname = v_hoaname;
+            A.loc_lattitude = v_loc_lattitude;
+            A.loc_longitude = v_loc_longitude;
+            A.enclosing_asset = v_enclosing_asset;
+            A.hoa_name = v_hoa_name;
             
             int status = A.register_asset();
             if(status == 1){

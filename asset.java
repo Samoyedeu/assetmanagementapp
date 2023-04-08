@@ -15,34 +15,32 @@ import java.sql.*;
 public class asset {
     
     // Fields of Assets
-    public int assetid;
-    public String name;
-    public String description;
-    public java.sql.Date acq_date;
+    public int asset_id;
+    public String asset_name;
+    public String asset_description;
+    public java.sql.Date acquisition_date;
     public int forrent;
-    public float value;
-    public String type;
+    public float asset_value;
+    public String type_asset;
     public String status; 
-    public String location;
-    public String location_mapx;
-    public String location_mapy;
-    public int location_assetid;
-    public String hoaname;
+    public String loc_lattitude;
+    public String loc_longitude;
+    public String enclosing_asset;
+    public String hoa_name;
     
     // list of assets
-    public ArrayList<Integer> assetidlist = new ArrayList<> ();
-    public ArrayList<String> namelist = new ArrayList<> ();
-    public ArrayList<String> descriptionlist = new ArrayList<>();
-    public ArrayList<java.sql.Date> acq_datelist = new ArrayList<>();
+    public ArrayList<Integer> asset_idlist = new ArrayList<> ();
+    public ArrayList<String> asset_namelist = new ArrayList<> ();
+    public ArrayList<String> asset_descriptionlist = new ArrayList<>();
+    public ArrayList<java.sql.Date> acquisition_datelist = new ArrayList<>();
     public ArrayList<Integer> forrentlist = new ArrayList<>();
-    public ArrayList<Float> valuelist = new ArrayList<>();
-    public ArrayList<String> typelist = new ArrayList<>();
+    public ArrayList<Float> asset_valuelist = new ArrayList<>();
+    public ArrayList<String> type_assetlist = new ArrayList<>();
     public ArrayList<String> statuslist = new ArrayList<>();
-    public ArrayList<String> locationlist = new ArrayList<>();
-    public ArrayList<String> location_mapxlist = new ArrayList<>();
-    public ArrayList<String> location_mapylist = new ArrayList<>();
-    public ArrayList<Integer> location_assetidlist = new ArrayList<>();
-    public ArrayList<String> hoanamelist = new ArrayList<>();
+    public ArrayList<String> loc_lattitudelist = new ArrayList<>();
+    public ArrayList<String> loc_longitudelist = new ArrayList<>();
+    public ArrayList<String> enclosing_assetlist = new ArrayList<>();
+    public ArrayList<String> hoa_namelist = new ArrayList<>();
     
     
     public asset(){
@@ -52,12 +50,12 @@ public class asset {
     public int dispose_asset(){
         try{
             Connection conn;
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbhomeowners?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             System.out.println("Connection Successful");
             
             // 2. Prepare SQL Statement
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE asset SET status = 'DI' WHERE assetid= ?;");
-            pstmt.setInt(1, assetid);
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE assets SET status = 'X' WHERE asset_id= ?;");
+            pstmt.setInt(1, asset_id);
             pstmt.executeUpdate();
             
             pstmt.close();
@@ -74,55 +72,52 @@ public class asset {
         try{
             // 1. Connect to our database
             Connection conn;
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbhomeowners?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             System.out.println("Connection Successful");
             
             // 2. Prepare SQL Statement
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM asset");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM assets WHERE status = 'S'");
             ResultSet rst = pstmt.executeQuery();
-            assetidlist.clear();
-            namelist.clear();
-            descriptionlist.clear();
-            acq_datelist.clear();
+            asset_idlist.clear();
+            asset_namelist.clear();
+            asset_descriptionlist.clear();
+            acquisition_datelist.clear();
             forrentlist.clear();
-            valuelist.clear();
-            typelist.clear();
-            statuslist.clear();
-            locationlist.clear();
-            location_mapxlist.clear();
-            location_mapylist.clear();
-            location_assetidlist.clear();
-            hoanamelist.clear();
+            asset_valuelist.clear();
+            type_assetlist.clear();
+            statuslist.clear();;
+            loc_lattitudelist.clear();
+            loc_longitudelist.clear();
+            enclosing_assetlist.clear();
+            hoa_namelist.clear();
             
             
             while(rst.next()) { 
-                assetid = rst.getInt("assetid");
-                name = rst.getString("name");
-                description = rst.getString("description");
-                acq_date = rst.getDate("acq_date");
+                asset_id = rst.getInt("asset_id");
+                asset_name = rst.getString("asset_name");
+                asset_description = rst.getString("asset_description");
+                acquisition_date = rst.getDate("acquisition_date");
                 forrent = rst.getInt("forrent");
-                value = rst.getFloat("value");
-                type = rst.getString("type");
+                asset_value = rst.getFloat("asset_value");
+                type_asset = rst.getString("type_asset");
                 status = rst.getString("status");
-                location = rst.getString("location");
-                location_mapx = rst.getString("location_mapx");
-                location_mapy = rst.getString("location_mapy");
-                location_assetid = rst.getInt("location_assetid");
-                hoaname = rst.getString("hoaname");
+                loc_lattitude = rst.getString("loc_lattitude");
+                loc_longitude = rst.getString("loc_longitude");
+                enclosing_asset = rst.getString("enclosing_asset");
+                hoa_name = rst.getString("hoa_name");
                 
-                assetidlist.add(assetid);
-                namelist.add(name);
-                descriptionlist.add(description);
-                acq_datelist.add(acq_date);
+                asset_idlist.add(asset_id);
+                asset_namelist.add(asset_name);
+                asset_descriptionlist.add(asset_description);
+                acquisition_datelist.add(acquisition_date);
                 forrentlist.add(forrent);
-                valuelist.add(value);
-                typelist.add(type);
+                asset_valuelist.add(asset_value);
+                type_assetlist.add(type_asset);
                 statuslist.add(status);
-                locationlist.add(location);
-                location_mapxlist.add(location_mapx);
-                location_mapylist.add(location_mapy);
-                location_assetidlist.add(location_assetid);
-                hoanamelist.add(hoaname);
+                loc_lattitudelist.add(loc_lattitude);
+                loc_longitudelist.add(loc_longitude);
+                enclosing_assetlist.add(enclosing_asset);
+                hoa_namelist.add(hoa_name);
           
             }
             
@@ -139,12 +134,12 @@ public class asset {
     public int delete_asset(){
         try {
             Connection conn;
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbhomeowners?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             System.out.println("Connection Successful");
             
             // 2. Prepare SQL Statement
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM asset WHERE assetid = ?");
-            pstmt.setInt(1, assetid);
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM assets WHERE asset_id = ?");
+            pstmt.setInt(1, asset_id);
             pstmt.executeUpdate();
             
             pstmt.close();
@@ -160,55 +155,52 @@ public class asset {
     public int asset_for_deletion(){
         try {
             Connection conn;
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbhomeowners?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             System.out.println("Connection Successful");
             
             // 2. Prepare SQL Statement
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM asset WHERE assetid NOT IN (SELECT assetid FROM asset_activity) AND assetid NOT IN (SELECT assetid FROM assets_rented);");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM assets WHERE asset_id NOT IN (SELECT asset_id FROM asset_transactions);");
             ResultSet rst = pstmt.executeQuery();
-            assetidlist.clear();
-            namelist.clear();
-            descriptionlist.clear();
-            acq_datelist.clear();
+            asset_idlist.clear();
+            asset_namelist.clear();
+            asset_descriptionlist.clear();
+            acquisition_datelist.clear();
             forrentlist.clear();
-            valuelist.clear();
-            typelist.clear();
-            statuslist.clear();
-            locationlist.clear();
-            location_mapxlist.clear();
-            location_mapylist.clear();
-            location_assetidlist.clear();
-            hoanamelist.clear();
+            asset_valuelist.clear();
+            type_assetlist.clear();
+            statuslist.clear();;
+            loc_lattitudelist.clear();
+            loc_longitudelist.clear();
+            enclosing_assetlist.clear();
+            hoa_namelist.clear();
             
             
             while(rst.next()) { 
-                assetid = rst.getInt("assetid");
-                name = rst.getString("name");
-                description = rst.getString("description");
-                acq_date = rst.getDate("acq_date");
+                asset_id = rst.getInt("asset_id");
+                asset_name = rst.getString("asset_name");
+                asset_description = rst.getString("asset_description");
+                acquisition_date = rst.getDate("acquisition_date");
                 forrent = rst.getInt("forrent");
-                value = rst.getFloat("value");
-                type = rst.getString("type");
+                asset_value = rst.getFloat("asset_value");
+                type_asset = rst.getString("type_asset");
                 status = rst.getString("status");
-                location = rst.getString("location");
-                location_mapx = rst.getString("location_mapx");
-                location_mapy = rst.getString("location_mapy");
-                location_assetid = rst.getInt("location_assetid");
-                hoaname = rst.getString("hoaname");
+                loc_lattitude = rst.getString("loc_lattitude");
+                loc_longitude = rst.getString("loc_longitude");
+                enclosing_asset = rst.getString("enclosing_asset");
+                hoa_name = rst.getString("hoa_name");
                 
-                assetidlist.add(assetid);
-                namelist.add(name);
-                descriptionlist.add(description);
-                acq_datelist.add(acq_date);
+                asset_idlist.add(asset_id);
+                asset_namelist.add(asset_name);
+                asset_descriptionlist.add(asset_description);
+                acquisition_datelist.add(acquisition_date);
                 forrentlist.add(forrent);
-                valuelist.add(value);
-                typelist.add(type);
+                asset_valuelist.add(asset_value);
+                type_assetlist.add(type_asset);
                 statuslist.add(status);
-                locationlist.add(location);
-                location_mapxlist.add(location_mapx);
-                location_mapylist.add(location_mapy);
-                location_assetidlist.add(location_assetid);
-                hoanamelist.add(hoaname);
+                loc_lattitudelist.add(loc_lattitude);
+                loc_longitudelist.add(loc_longitude);
+                enclosing_assetlist.add(enclosing_asset);
+                hoa_namelist.add(hoa_name);
           
             }
             
@@ -225,23 +217,22 @@ public class asset {
     public int update_asset(){
         try {
             Connection conn;
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbhomeowners?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             System.out.println("Connection Successful");
             
             // 2. Prepare SQL Statement
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE asset SET name = ?, description = ?, acq_date = ?, forrent = ?, value = ?, type = ?, status = ?, location = ?, location_mapx = ?, location_mapy = ?, location_assetid = ? WHERE assetid = ?");
-            pstmt.setString(1, name);
-            pstmt.setString(2, description);
-            pstmt.setDate(3, acq_date);
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE assets SET asset_name = ?, asset_description = ?, acquisition_date = ?, forrent = ?, asset_value = ?, type_asset = ?, status = ?, loc_lattitude = ?, loc_longitude = ?, enclosing_asset = ? WHERE asset_id = ?");
+            pstmt.setString(1, asset_name);
+            pstmt.setString(2, asset_description);
+            pstmt.setDate(3, acquisition_date);
             pstmt.setInt(4, forrent);
-            pstmt.setFloat(5, value);
-            pstmt.setString(6, type);
+            pstmt.setFloat(5, asset_value);
+            pstmt.setString(6, type_asset);
             pstmt.setString(7, status);
-            pstmt.setString(8, location);
-            pstmt.setString(9, location_mapx);
-            pstmt.setString(10, location_mapy);
-            pstmt.setInt(11, location_assetid);
-            pstmt.setInt(12, assetid);
+            pstmt.setString(8, loc_lattitude);
+            pstmt.setString(9, loc_longitude);
+            pstmt.setString(10, enclosing_asset);
+            pstmt.setInt(11, asset_id);
             pstmt.executeUpdate();
             
             pstmt.close();
@@ -259,55 +250,52 @@ public class asset {
         try{
             // 1. Connect to our database
             Connection conn;
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbhomeowners?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             System.out.println("Connection Successful");
             
             // 2. Prepare SQL Statement
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM asset");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM assets");
             ResultSet rst = pstmt.executeQuery();
-            assetidlist.clear();
-            namelist.clear();
-            descriptionlist.clear();
-            acq_datelist.clear();
+            asset_idlist.clear();
+            asset_namelist.clear();
+            asset_descriptionlist.clear();
+            acquisition_datelist.clear();
             forrentlist.clear();
-            valuelist.clear();
-            typelist.clear();
-            statuslist.clear();
-            locationlist.clear();
-            location_mapxlist.clear();
-            location_mapylist.clear();
-            location_assetidlist.clear();
-            hoanamelist.clear();
+            asset_valuelist.clear();
+            type_assetlist.clear();
+            statuslist.clear();;
+            loc_lattitudelist.clear();
+            loc_longitudelist.clear();
+            enclosing_assetlist.clear();
+            hoa_namelist.clear();
             
             
             while(rst.next()) { 
-                assetid = rst.getInt("assetid");
-                name = rst.getString("name");
-                description = rst.getString("description");
-                acq_date = rst.getDate("acq_date");
+                asset_id = rst.getInt("asset_id");
+                asset_name = rst.getString("asset_name");
+                asset_description = rst.getString("asset_description");
+                acquisition_date = rst.getDate("acquisition_date");
                 forrent = rst.getInt("forrent");
-                value = rst.getFloat("value");
-                type = rst.getString("type");
+                asset_value = rst.getFloat("asset_value");
+                type_asset = rst.getString("type_asset");
                 status = rst.getString("status");
-                location = rst.getString("location");
-                location_mapx = rst.getString("location_mapx");
-                location_mapy = rst.getString("location_mapy");
-                location_assetid = rst.getInt("location_assetid");
-                hoaname = rst.getString("hoaname");
+                loc_lattitude = rst.getString("loc_lattitude");
+                loc_longitude = rst.getString("loc_longitude");
+                enclosing_asset = rst.getString("enclosing_asset");
+                hoa_name = rst.getString("hoa_name");
                 
-                assetidlist.add(assetid);
-                namelist.add(name);
-                descriptionlist.add(description);
-                acq_datelist.add(acq_date);
+                asset_idlist.add(asset_id);
+                asset_namelist.add(asset_name);
+                asset_descriptionlist.add(asset_description);
+                acquisition_datelist.add(acquisition_date);
                 forrentlist.add(forrent);
-                valuelist.add(value);
-                typelist.add(type);
+                asset_valuelist.add(asset_value);
+                type_assetlist.add(type_asset);
                 statuslist.add(status);
-                locationlist.add(location);
-                location_mapxlist.add(location_mapx);
-                location_mapylist.add(location_mapy);
-                location_assetidlist.add(location_assetid);
-                hoanamelist.add(hoaname);
+                loc_lattitudelist.add(loc_lattitude);
+                loc_longitudelist.add(loc_longitude);
+                enclosing_assetlist.add(enclosing_asset);
+                hoa_namelist.add(hoa_name);
           
             }
             
@@ -326,33 +314,32 @@ public class asset {
             // this is where we will put codes that will interact with database
             // 1: Connect to our database
             Connection conn;
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbhomeowners?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             System.out.println("Connection Successful");
             
             // 2: Prepare our SQL Statement
             // 2.1 To get the next AssetID
             
-            PreparedStatement pstmt = conn.prepareStatement("SELECT MAX(assetid) + 1 AS newID FROM asset");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT MAX(asset_id) + 1 AS newID FROM assets");
             ResultSet rst = pstmt.executeQuery();
             while(rst.next()) { 
-                assetid = rst.getInt("newID");
+                asset_id = rst.getInt("newID");
             }
             
             // 2.2 Save the new asset 
-            pstmt = conn.prepareStatement ("INSERT INTO asset (assetid, name, description, acq_date, forrent, value, type, status, location, location_mapx, location_mapy, location_assetid, hoaname) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            pstmt.setInt(1, assetid);
-            pstmt.setString(2, name);
-            pstmt.setString(3, description);
-            pstmt.setDate(4, acq_date);
+            pstmt = conn.prepareStatement ("INSERT INTO assets (asset_id, asset_name, asset_description, acquisition_date, forrent, asset_value, type_asset, status, loc_lattitude, loc_longitude, hoa_name, enclosing_asset) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            pstmt.setInt(1, asset_id);
+            pstmt.setString(2, asset_name);
+            pstmt.setString(3, asset_description);
+            pstmt.setDate(4, acquisition_date);
             pstmt.setInt(5, forrent);
-            pstmt.setFloat(6, value);
-            pstmt.setString(7, type);
+            pstmt.setFloat(6, asset_value);
+            pstmt.setString(7, type_asset);
             pstmt.setString(8, status);
-            pstmt.setString(9, location);
-            pstmt.setString(10, location_mapx);
-            pstmt.setString(11, location_mapy);
-            pstmt.setInt(12, location_assetid);
-            pstmt.setString(13, hoaname);
+            pstmt.setString(9, loc_lattitude);
+            pstmt.setString(10, loc_longitude);
+            pstmt.setString(11, hoa_name);
+            pstmt.setString(12, enclosing_asset);
             pstmt.executeUpdate();
             pstmt.close();
             conn.close();
@@ -370,59 +357,22 @@ public class asset {
     
     public static void main (String args[]){
         asset A = new asset();
-        /*
-        A.name = "Basketball Court";
-        A.description = "Normal court";
-        A.acq_date = java.sql.Date.valueOf("2023-05-04");
-        A.forrent = 1;
-        A.value = 30000;
-        A.type = "P";
-        A.status = "W";
-        A.location = "Tayabas City";
-        A.location_mapx = "300";
-        A.location_mapy = "200";
-        A.hoaname = "Ayala Alabang Village Homeowners Association";        
-        //System.out.println(A.register_asset());
-        /*
-        A.asset_for_update();
-        for(int i = 0; i < A.assetidlist.size(); i++){
-            System.out.println(A.assetidlist.get(i));
-            System.out.println(A.namelist.get(i));
-            System.out.println(A.descriptionlist.get(i));
-            System.out.println(A.acq_datelist.get(i));
-            System.out.println(A.forrentlist.get(i));
-            System.out.println(A.valuelist.get(i));
-            System.out.println(A.typelist.get(i));
-            System.out.println(A.statuslist.get(i));
-            System.out.println(A.locationlist.get(i));
-            System.out.println(A.location_mapxlist.get(i));
-            System.out.println(A.location_mapylist.get(i));
-            System.out.println(A.location_assetidlist.get(i));
-            System.out.println(A.hoanamelist.get(i));
-
-        }
-        A.assetid = 1;
-        System.out.println(A.update_asset());*/
         
-        //A.asset_for_deletion();
-     
-        System.out.println(A.asset_for_disposal());
-        for(int i = 0; i < A.assetidlist.size(); i++){
-            System.out.println(A.assetidlist.get(i));
-            System.out.println(A.namelist.get(i));
-            System.out.println(A.descriptionlist.get(i));
-            System.out.println(A.acq_datelist.get(i));
-            System.out.println(A.forrentlist.get(i));
-            System.out.println(A.valuelist.get(i));
-            System.out.println(A.typelist.get(i));
-            System.out.println(A.statuslist.get(i));
-            System.out.println(A.locationlist.get(i));
-            System.out.println(A.location_mapxlist.get(i));
-            System.out.println(A.location_mapylist.get(i));
-            System.out.println(A.location_assetidlist.get(i));
-            System.out.println(A.hoanamelist.get(i));
+        A.asset_name = "Basketball Court";
+        A.asset_description = "Normal court";
+        A.acquisition_date = java.sql.Date.valueOf("2023-05-04");
+        A.forrent = 1;
+        A.asset_value = 30000;
+        A.type_asset = "P";
+        A.status = "W";
+        A.loc_lattitude = "300";
+        A.loc_longitude = "200";
+        A.hoa_name = "SJH";   
+        A.enclosing_asset = "N/A";
+        //A.enclosing_asset = Integer.parseInt(null);
+        System.out.println(A.register_asset());
+         /*A.asset_for_update();*/
 
-        }
         
     }
 }

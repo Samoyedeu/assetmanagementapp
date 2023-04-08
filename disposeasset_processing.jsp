@@ -15,8 +15,8 @@
     <body>
         <form action="index.html">
             <jsp:useBean id= "A" class="assetmanagement.asset" scope="session" />
-            <% 
-            A.assetid = Integer.parseInt(request.getParameter("asset"));
+            <% //Receive the values from register.html
+            A.asset_id = Integer.parseInt(request.getParameter("asset"));
             int status = A.dispose_asset();
             if(status == 1){
             %>

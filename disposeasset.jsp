@@ -18,9 +18,9 @@
             Asset:<select id="asset" name="asset">
                 <%
                     A.asset_for_disposal();
-                    for(int i = 0; i < A.assetidlist.size(); i++){
+                    for(int i = 0; i < A.asset_idlist.size(); i++){
                 %>
-                <option value="<%=A.assetidlist.get(i)%>"><%=A.namelist.get(i)%></option>
+                <option value="<%=A.asset_idlist.get(i)%>"><%=A.asset_namelist.get(i)%></option>
                 <%
                     }
                 %>
