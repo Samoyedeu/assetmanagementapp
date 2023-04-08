@@ -46,6 +46,7 @@ header .pages li a{
 .container {
     max-width: 1400px;
     margin: 0 auto;
+    padding-bottom: 200px;
 }
 
 #home {
@@ -254,6 +255,7 @@ header .pages li a{
 .btn-submit {
     height: 2rem;
     width: 100%;
+    border-radius: 2rem;
     background-color: white;
     border: none;
     cursor: pointer;
@@ -266,4 +268,23 @@ header .pages li a{
 .btn-submit:hover {
     background-color: #005aff;
     color: white;
+}
+
+#choice {
+    display: flex;
+    justify-content: space-around;
+}
+
+#choice #choice1, #choice #choice2{
+    display:flex;
+    justify-content: flex-start;
+}
+
+#choice #choice1 label, #choice #choice2 label {
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.updateAsset_body .btn-submit {
+    margin-top:15px;
 }
