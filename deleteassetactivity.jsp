@@ -17,10 +17,11 @@
             <jsp:useBean id= "A" class="assetmanagement.assetactivity" scope="session" />
             Asset Activity:<select id="assetactivity" name="assetactivity">
                 <%
+                    A.activity_date = java.sql.Date.valueOf(request.getParameter("activity_date"));
                     A.assetactivity_for_deletion();
-                    for(int i = 0; i < A.asset_activityidList.size(); i++){
+                    for(int i = 0; i < A.activity_dateList.size(); i++){
                 %>
-                <option value="<%=A.asset_activityidList.get(i)%>"><%=A.descriptionList.get(i)%></option>
+                <option value="<%=A.asset_idList.get(i)%>"><%=A.activity_descriptionList.get(i)%></option>
                 <%
                     }
                 %>

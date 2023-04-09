@@ -15,27 +15,26 @@ import java.sql.*;
 public class assetactivity {
     
     // Fields of Asset Activity
-    public int asset_activityid;
-    public int assetid;
-    public String description;
-    public int hoa_officer;
+    public int asset_id;
+    public java.sql.Date activity_date;
+    public String activity_description;
     public java.sql.Date tent_start;
     public java.sql.Date tent_end;
-    public java.sql.Date actual_start;
-    public java.sql.Date actual_end;
-    public int orno; 
+    public java.sql.Date act_start;
+    public java.sql.Date act_end;
+    public double cost; 
     public String status;
     
     // list of asset activity
-    public ArrayList<Integer> asset_activityidList = new ArrayList<> ();
-    public ArrayList<Integer> assetidList = new ArrayList<> ();
-    public ArrayList<String> descriptionList = new ArrayList<>();
+    public ArrayList<Integer> asset_idList = new ArrayList<> ();
+    public ArrayList<java.sql.Date> activity_dateList = new ArrayList<> ();
+    public ArrayList<String> activity_descriptionList = new ArrayList<>();
     public ArrayList<Integer> hoa_officerList = new ArrayList<> ();
     public ArrayList<java.sql.Date> tent_startList = new ArrayList<> ();
-    public ArrayList<java.sql.Date> tent_endList = new ArrayList<>();
-    public ArrayList<java.sql.Date> actual_startList = new ArrayList<> ();
-    public ArrayList<java.sql.Date> actual_endList = new ArrayList<>();
-    public ArrayList<Integer> ornoList = new ArrayList<> ();
+    public ArrayList<java.sql.Date> tent_endList = new ArrayList<> ();
+    public ArrayList<java.sql.Date> act_startList = new ArrayList<> ();
+    public ArrayList<java.sql.Date> act_endList = new ArrayList<>();
+    public ArrayList<Double> costList = new ArrayList<> ();
     public ArrayList<String> statusList = new ArrayList<> ();
 
     
@@ -46,12 +45,13 @@ public class assetactivity {
     public int complete_assetactivity(){
         try {
             Connection conn;
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbhomeowners?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             System.out.println("Connection Successful");
             
             // 2. Prepare SQL Statement
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE asset_activity SET status = 'C' WHERE asset_activityid	= ?");
-            pstmt.setInt(1, asset_activityid);
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE asset_activity SET status = 'C' WHERE asset_id = ? AND activity_date = ?");
+            pstmt.setInt(1, asset_id);
+            pstmt.setDate(2, activity_date);
             pstmt.executeUpdate();
             
             pstmt.close();
@@ -63,47 +63,49 @@ public class assetactivity {
             return 0;
         }
     }
-     
+    
     public int assetactivity_for_completion(){
         try{
+            // 1. Connect to our database
             Connection conn;
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbhomeowners?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             System.out.println("Connection Successful");
             
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM asset_activity;");
+            // 2. Prepare SQL Statement
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM asset_activity WHERE activity_date = ? AND status != 'C'");
+            pstmt.setDate(1, activity_date);
             ResultSet rst = pstmt.executeQuery();
-            asset_activityidList.clear();
-            assetidList.clear();
-            descriptionList.clear();
-            hoa_officerList.clear();
+            asset_idList.clear();
+            activity_dateList.clear();
+            activity_descriptionList.clear();
             tent_startList.clear();
             tent_endList.clear();
-            actual_startList.clear();
-            actual_endList.clear();
-            ornoList.clear();
+            act_startList.clear();
+            act_endList.clear();
+            costList.clear();
             statusList.clear();
+          
             
-            while(rst.next()){
-                asset_activityid = rst.getInt("asset_activityid");
-                assetid = rst.getInt("assetid");
-                description = rst.getString("description");
-                hoa_officer = rst.getInt("hoa_officer");
+            while(rst.next()) { 
+                   
+                asset_id = rst.getInt("asset_id");
+                activity_date = rst.getDate("activity_date");
+                activity_description = rst.getString("activity_description");
                 tent_start = rst.getDate("tent_start");
                 tent_end = rst.getDate("tent_end");
-                actual_start = rst.getDate("actual_start");
-                actual_end = rst.getDate("actual_end");
-                orno = rst.getInt("orno");
+                act_start = rst.getDate("act_start");
+                act_end = rst.getDate("act_end");
+                cost = rst.getDouble("cost");
                 status = rst.getString("status");
             
-                asset_activityidList.add(asset_activityid);
-                assetidList.add(assetid);
-                descriptionList.add(description);
-                hoa_officerList.add(hoa_officer);
+                asset_idList.add(asset_id);
+                activity_dateList.add(activity_date);
+                activity_descriptionList.add(activity_description);
                 tent_startList.add(tent_start);
                 tent_endList.add(tent_end);
-                actual_startList.add(actual_start);
-                actual_endList.add(actual_end);
-                ornoList.add(orno);
+                act_startList.add(act_start);
+                act_endList.add(act_end);
+                costList.add(cost);
                 statusList.add(status);
             }
             
@@ -111,7 +113,6 @@ public class assetactivity {
             conn.close();
             System.out.println("Successful");
             return 1;
-            
         } catch (Exception e){
             System.out.println(e.getMessage());
             return 0;
@@ -121,12 +122,13 @@ public class assetactivity {
     public int delete_assetactivity(){
         try {
             Connection conn;
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbhomeowners?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             System.out.println("Connection Successful");
             
             // 2. Prepare SQL Statement
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM asset_activity WHERE asset_activityid = ?");
-            pstmt.setInt(1, asset_activityid);
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM asset_activity WHERE asset_id = ? AND activity_date = ?");
+            pstmt.setInt(1, asset_id);
+            pstmt.setDate(2, activity_date);
             pstmt.executeUpdate();
             
             pstmt.close();
@@ -142,43 +144,41 @@ public class assetactivity {
     public int assetactivity_for_deletion(){
         try{
             Connection conn;
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbhomeowners?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             System.out.println("Connection Successful");
             
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM asset_activity;");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM asset_activity WHERE activity_date = ?;");
+            pstmt.setDate(1, activity_date);
             ResultSet rst = pstmt.executeQuery();
-            asset_activityidList.clear();
-            assetidList.clear();
-            descriptionList.clear();
-            hoa_officerList.clear();
+            asset_idList.clear();
+            activity_dateList.clear();
+            activity_descriptionList.clear();
             tent_startList.clear();
             tent_endList.clear();
-            actual_startList.clear();
-            actual_endList.clear();
-            ornoList.clear();
+            act_startList.clear();
+            act_endList.clear();
+            costList.clear();
             statusList.clear();
             
             while(rst.next()){
-                asset_activityid = rst.getInt("asset_activityid");
-                assetid = rst.getInt("assetid");
-                description = rst.getString("description");
-                hoa_officer = rst.getInt("hoa_officer");
+                asset_id = rst.getInt("asset_id");
+                activity_date = rst.getDate("activity_date");
+                activity_description = rst.getString("activity_description");
                 tent_start = rst.getDate("tent_start");
                 tent_end = rst.getDate("tent_end");
-                actual_start = rst.getDate("actual_start");
-                actual_end = rst.getDate("actual_end");
-                orno = rst.getInt("orno");
+                act_start = rst.getDate("act_start");
+                act_end = rst.getDate("act_end");
+                cost = rst.getDouble("cost");
                 status = rst.getString("status");
             
-                asset_activityidList.add(asset_activityid);
-                assetidList.add(assetid);
-                descriptionList.add(description);
-                hoa_officerList.add(hoa_officer);
+                asset_idList.add(asset_id);
+                activity_dateList.add(activity_date);
+                activity_descriptionList.add(activity_description);
                 tent_startList.add(tent_start);
                 tent_endList.add(tent_end);
-                actual_startList.add(actual_start);
-                actual_endList.add(actual_end);
-                ornoList.add(orno);
+                act_startList.add(act_start);
+                act_endList.add(act_end);
+                costList.add(cost);
                 statusList.add(status);
             }
             
@@ -196,21 +196,20 @@ public class assetactivity {
     public int update_activity(){
         try {
             Connection conn;
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbhomeowners?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             System.out.println("Connection Successful");
             
             // 2. Prepare SQL Statement
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE asset_activity SET assetid = ?, description = ?, hoa_officer = ?, tent_start = ?, tent_end = ?, actual_start = ?, actual_end = ?, orno = ?, status = ?  WHERE asset_activityid = ?");
-            pstmt.setInt(1, assetid);
-            pstmt.setString(2, description);
-            pstmt.setInt(3, hoa_officer);
-            pstmt.setDate(4, tent_start);
-            pstmt.setDate(5, tent_end);
-            pstmt.setDate(6, actual_start);
-            pstmt.setDate(7, actual_end);
-            pstmt.setInt(8, orno);
-            pstmt.setString(9, status);
-            pstmt.setInt(10, asset_activityid);
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE asset_activity SET activity_description = ?, tent_start = ?, tent_end = ?, act_start = ?, act_end = ?, cost = ?, status = ?  WHERE asset_id = ? AND activity_date = ?");
+            pstmt.setString(1, activity_description);
+            pstmt.setDate(2, tent_start);
+            pstmt.setDate(3, tent_end);
+            pstmt.setDate(4, act_start);
+            pstmt.setDate(5, act_end);
+            pstmt.setDouble(6, cost);
+            pstmt.setString(7, status);
+            pstmt.setInt(8, asset_id);
+            pstmt.setDate(9, activity_date);
             pstmt.executeUpdate();
             
             pstmt.close();
@@ -224,51 +223,78 @@ public class assetactivity {
         }
     }
     
-    public int activity_for_update(){
+    public int activity_for_update2(){
         try{
             // 1. Connect to our database
             Connection conn;
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbhomeowners?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             System.out.println("Connection Successful");
             
             // 2. Prepare SQL Statement
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM asset_activity");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM asset_activity WHERE activity_date = ?");
+            pstmt.setDate(1, activity_date);
             ResultSet rst = pstmt.executeQuery();
-            asset_activityidList.clear();
-            assetidList.clear();
-            descriptionList.clear();
-            hoa_officerList.clear();
+            asset_idList.clear();
+            activity_dateList.clear();
+            activity_descriptionList.clear();
             tent_startList.clear();
             tent_endList.clear();
-            actual_startList.clear();
-            actual_endList.clear();
-            ornoList.clear();
+            act_startList.clear();
+            act_endList.clear();
+            costList.clear();
             statusList.clear();
           
             
             while(rst.next()) { 
                    
-                asset_activityid = rst.getInt("asset_activityid");
-                assetid = rst.getInt("assetid");
-                description = rst.getString("description");
-                hoa_officer = rst.getInt("hoa_officer");
+                asset_id = rst.getInt("asset_id");
+                activity_date = rst.getDate("activity_date");
+                activity_description = rst.getString("activity_description");
                 tent_start = rst.getDate("tent_start");
                 tent_end = rst.getDate("tent_end");
-                actual_start = rst.getDate("actual_start");
-                actual_end = rst.getDate("actual_end");
-                orno = rst.getInt("orno");;
+                act_start = rst.getDate("act_start");
+                act_end = rst.getDate("act_end");
+                cost = rst.getDouble("cost");
                 status = rst.getString("status");
-                  
-                asset_activityidList.add(asset_activityid);
-                assetidList.add(assetid);
-                descriptionList.add(description);
-                hoa_officerList.add(hoa_officer);
+            
+                asset_idList.add(asset_id);
+                activity_dateList.add(activity_date);
+                activity_descriptionList.add(activity_description);
                 tent_startList.add(tent_start);
                 tent_endList.add(tent_end);
-                actual_startList.add(actual_start);
-                actual_endList.add(actual_start);
-                ornoList.add(orno);
-                statusList.add(status);      
+                act_startList.add(act_start);
+                act_endList.add(act_end);
+                costList.add(cost);
+                statusList.add(status);
+            }
+            
+            pstmt.close();
+            conn.close();
+            System.out.println("Successful");
+            return 1;
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            return 0;
+        }
+    }
+    
+    public int asset_activity_dropdown(){
+        try{
+            // 1. Connect to our database
+            Connection conn;
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            System.out.println("Connection Successful");
+            
+            // 2. Prepare SQL Statement
+            PreparedStatement pstmt = conn.prepareStatement("SELECT DISTINCT activity_date FROM asset_activity");
+            ResultSet rst = pstmt.executeQuery();
+            activity_dateList.clear();
+          
+            
+            while(rst.next()) { 
+                  
+                activity_date = rst.getDate("activity_date");
+                activity_dateList.add(activity_date);
             }
             
             pstmt.close();
@@ -286,30 +312,25 @@ public class assetactivity {
             // this is where we will put codes that will interact with database
             // 1: Connect to our database
             Connection conn;
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbhomeowners?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             System.out.println("Connection Successful");
             
             // 2: Prepare our SQL Statement
             // 2.1 To get the next Asset Activity ID
             
-            PreparedStatement pstmt = conn.prepareStatement("SELECT MAX(asset_activityid) + 1 AS newID FROM asset_activity");
-            ResultSet rst = pstmt.executeQuery();
-            while(rst.next()) { 
-                asset_activityid = rst.getInt("newID");
-            }
-            
+
+            PreparedStatement pstmt;
             // 2.2 Save the new asset 
-            pstmt = conn.prepareStatement ("INSERT INTO asset_activity (asset_activityid, assetid, description, hoa_officer, tent_start, tent_end, actual_start, actual_end, orno, status) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            pstmt.setInt(1, asset_activityid);
-            pstmt.setInt(2, assetid);
-            pstmt.setString(3, description);
-            pstmt.setInt(4, hoa_officer);
-            pstmt.setDate(5, tent_start);
-            pstmt.setDate(6, tent_end);
-            pstmt.setDate(7, actual_start);
-            pstmt.setDate(8, actual_end);
-            pstmt.setInt(9, orno);
-            pstmt.setString(10, status);
+            pstmt = conn.prepareStatement ("INSERT INTO asset_activity (asset_id, activity_date, activity_description, tent_start, tent_end, act_start, act_end, cost, status) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            pstmt.setInt(1, asset_id);
+            pstmt.setDate(2, activity_date);
+            pstmt.setString(3, activity_description);
+            pstmt.setDate(4, tent_start);
+            pstmt.setDate(5, tent_end);
+            pstmt.setDate(6, act_start);
+            pstmt.setDate(7, act_end);
+            pstmt.setDouble(8, cost);
+            pstmt.setString(9, status);
             pstmt.executeUpdate();
             pstmt.close();
             conn.close();
@@ -327,18 +348,12 @@ public class assetactivity {
     
     public static void main (String args[]){
         assetactivity A = new assetactivity();
-        /*
-        A.assetid = 1;
-        A.description = "Basketballx2 ang sarapx2 mag basketball";
-        A.hoa_officer = 3;
-        A.tent_start = java.sql.Date.valueOf("2023-05-04");
-        A.tent_end = java.sql.Date.valueOf("2023-05-05");
-        A.actual_start = java.sql.Date.valueOf("2023-05-06");
-        A.tent_end = java.sql.Date.valueOf("2023-10-06");
-        A.orno = 1;
-        A.status = "S";*/
         
-        System.out.println(A.complete_assetactivity());
+        A.activity_date = java.sql.Date.valueOf("2022-12-21");
+        System.out.println(A.asset_activity_dropdown());
+        for(int i = 0; i < A.activity_dateList.size(); i++){
+            System.out.println(A.activity_dateList.get(i));
+        }
         
         
     }

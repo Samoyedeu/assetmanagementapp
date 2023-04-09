@@ -35,18 +35,19 @@ and open the template in the editor.
             </div>
 
             <div class="fields">
-              <span class="title">Description</span>
+              <span class="title">Activity Date</span>
               <div class="input-field">
-                <input type="text" id="description" name="description" />
+                <input type="date" id="activity_date" name="activity_date" />
+              </div>
+            </div>
+            
+            <div class="fields">
+              <span class="title">Activity Description</span>
+              <div class="input-field">
+                <input type="text" id="activity_description" name="activity_description" />
               </div>
             </div>
 
-            <div class="fields">
-              <span class="title">HOA Officer ID</span>
-              <div class="input-field">
-                <input type="number" id="hoa_officer" name="hoa_officer" />
-              </div>
-            </div>
 
             <div class="fields">
               <span class="title">Tentative Start Date</span>
@@ -68,28 +69,28 @@ and open the template in the editor.
             <div class="fields">
               <span class="title">Actual Start Date</span>
               <div class="input-field">
-                <input type="date" id="actual_start" name="actual_start" />
+                <input type="date" id="actual_start" name="act_start" />
               </div>
             </div>
 
             <div class="fields">
               <span class="title">Actual End Date</span>
               <div class="input-field">
-                <input type="date" id="actual_end" name="actual_end" />
+                <input type="date" id="actual_end" name="act_end" />
               </div>
             </div>
 
             <div class="fields">
-              <span class="title">Official Receipt Number</span>
+              <span class="title">Cost</span>
               <div class="input-field">
-                <input type="number" id="location_assetid" name="orno" />
+                <input type="number" id="cost" name="cost" />
               </div>
             </div>
 
             <div class="fields">
-              <span class="title" for="status">Status</span>
+              <span class="title">Status</span>
               <div class="input-field">
-                <select name="status" class="select_class" id="type">
+                <select name="status" class="select_class" id="status">
                   <option value="S">Scheduled</option>
                   <option value="O">Ongoing</option>
                   <option value="C">Completed</option>

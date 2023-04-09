@@ -17,20 +17,21 @@
             <jsp:useBean id= "A" class="assetmanagement.assetactivity" scope="session" />
             Activity:<select id="activity" name="activity">
                 <%
-                    A.activity_for_update();
-                    for(int i = 0; i < A.asset_activityidList.size(); i++){
+                    A.activity_date = java.sql.Date.valueOf(request.getParameter("activity_date"));
+                    A.activity_for_update2();
+                    for(int i = 0; i < A.activity_dateList.size(); i++){
                 %>
-                <option value="<%=A.asset_activityidList.get(i)%>"><%=A.descriptionList.get(i)%></option>
+                <option value="<%=A.asset_idList.get(i)%>"><%=A.activity_descriptionList.get(i)%></option>
                 <%
                     }
                 %>
             </select><br>
-            Description: <input type="text" id="description" name="description"><br>
+            Activity Description: <input type="text" id="activity_description" name="activity_description"><br>
             Tent Start Date: <input type="date" id="tent_start" name="tent_start"><br>
             Tent End Date: <input type="date" id="tent_end" name="tent_end"><br>
-            Actual Start Date: <input type="date" id="actual_start" name="actual_start"><br>
-            Actual End Date: <input type="date" id="actual_end" name="actual_end"><br>
-            Official Receipt Number: <input type="number" id="location_assetid" name="orno"><br>
+            Actual Start Date: <input type="date" id="act_start" name="act_start"><br>
+            Actual End Date: <input type="date" id="act_end" name="act_end"><br>
+            Cost: <input type="text" id="cost" name="cost"><br>
             <label for="status">Status:</label>
                 <select name="status" id="type">
                   <option value="S">Scheduled</option>
