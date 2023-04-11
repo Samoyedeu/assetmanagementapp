@@ -9,7 +9,7 @@ java.sql.*" %>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="reset.css" />
   </head>
-  <body>
+  <body class="deleteActPrompt_Body">
     <header>
       <div class="logo">Joenh Co. Realty</div>
       <div class="pages">

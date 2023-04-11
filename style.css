@@ -268,7 +268,7 @@ header .pages li a{
     margin-top:15px;
 }
 
-.asset_form .form_class .btn-submit,
-.asset_form .form_class .select_class{
+.deleteActPrompt_Body .asset_form .form_class .btn-submit,
+.deleteActPrompt_Body .asset_form .form_class .select_class{
     width: 50%;
 }
