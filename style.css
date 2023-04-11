@@ -267,3 +267,8 @@ header .pages li a{
 .updateAsset_body .btn-submit {
     margin-top:15px;
 }
+
+.asset_form .form_class .btn-submit,
+.asset_form .form_class .select_class{
+    width: 50%;
+}
