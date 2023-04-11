@@ -12,7 +12,7 @@ and open the template in the editor.
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="reset.css" />
   </head>
-  <body>
+  <body class="recordAct_body">
     <header>
       <div class="logo">Joenh Co. Realty</div>
       <div class="pages">
@@ -21,7 +21,7 @@ and open the template in the editor.
         </button>
       </div>
     </header>
-    <div class="record_form">
+    <div class="asset_form">
       <div class="formEdit">
         <form action="record_processing.jsp" class="form_class">
           <div class="col1" id="first">
@@ -40,14 +40,17 @@ and open the template in the editor.
                 <input type="date" id="activity_date" name="activity_date" />
               </div>
             </div>
-            
+
             <div class="fields">
               <span class="title">Activity Description</span>
               <div class="input-field">
-                <input type="text" id="activity_description" name="activity_description" />
+                <input
+                  type="text"
+                  id="activity_description"
+                  name="activity_description"
+                />
               </div>
             </div>
-
 
             <div class="fields">
               <span class="title">Tentative Start Date</span>
@@ -98,7 +101,12 @@ and open the template in the editor.
               </div>
             </div>
 
-            <input type="submit" value="Submit" class="btn-submit" id="record_submit" />
+            <input
+              type="submit"
+              value="Submit"
+              class="btn-submit"
+              id="record_submit"
+            />
           </div>
         </form>
       </div>
