@@ -180,6 +180,10 @@ header .pages li a{
     width: 40.5rem;
 }
 
+.recordAct_body .asset_form{    
+    width: 38.5rem;
+}
+
 .asset_form .formEdit {
     display: flex;
     justify-content: space-around;
