@@ -22,7 +22,7 @@ public class assetactivity {
     public java.sql.Date tent_end;
     public java.sql.Date act_start;
     public java.sql.Date act_end;
-    public double cost; 
+    public String cost; 
     public String status;
     
     // list of asset activity
@@ -34,7 +34,7 @@ public class assetactivity {
     public ArrayList<java.sql.Date> tent_endList = new ArrayList<> ();
     public ArrayList<java.sql.Date> act_startList = new ArrayList<> ();
     public ArrayList<java.sql.Date> act_endList = new ArrayList<>();
-    public ArrayList<Double> costList = new ArrayList<> ();
+    public ArrayList<String> costList = new ArrayList<> ();
     public ArrayList<String> statusList = new ArrayList<> ();
 
     
@@ -95,7 +95,7 @@ public class assetactivity {
                 tent_end = rst.getDate("tent_end");
                 act_start = rst.getDate("act_start");
                 act_end = rst.getDate("act_end");
-                cost = rst.getDouble("cost");
+                cost = rst.getString("cost");
                 status = rst.getString("status");
             
                 asset_idList.add(asset_id);
@@ -168,7 +168,7 @@ public class assetactivity {
                 tent_end = rst.getDate("tent_end");
                 act_start = rst.getDate("act_start");
                 act_end = rst.getDate("act_end");
-                cost = rst.getDouble("cost");
+                cost = rst.getString("cost");
                 status = rst.getString("status");
             
                 asset_idList.add(asset_id);
@@ -206,7 +206,7 @@ public class assetactivity {
             pstmt.setDate(3, tent_end);
             pstmt.setDate(4, act_start);
             pstmt.setDate(5, act_end);
-            pstmt.setDouble(6, cost);
+            pstmt.setString(6, cost);
             pstmt.setString(7, status);
             pstmt.setInt(8, asset_id);
             pstmt.setDate(9, activity_date);
@@ -254,7 +254,7 @@ public class assetactivity {
                 tent_end = rst.getDate("tent_end");
                 act_start = rst.getDate("act_start");
                 act_end = rst.getDate("act_end");
-                cost = rst.getDouble("cost");
+                cost = rst.getString("cost");
                 status = rst.getString("status");
             
                 asset_idList.add(asset_id);
@@ -307,6 +307,35 @@ public class assetactivity {
         }
     }
     
+    public int asset_id_dropdown(){
+        try{
+            // 1. Connect to our database
+            Connection conn;
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            System.out.println("Connection Successful");
+            
+            // 2. Prepare SQL Statement
+            PreparedStatement pstmt = conn.prepareStatement("SELECT asset_id FROM assets");
+            ResultSet rst = pstmt.executeQuery();
+            asset_idList.clear();
+          
+            
+            while(rst.next()) { 
+                  
+                asset_id = rst.getInt("asset_id");
+                asset_idList.add(asset_id);
+            }
+            
+            pstmt.close();
+            conn.close();
+            System.out.println("Successful");
+            return 1;
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            return 0;
+        }
+    }
+    
     public int record_assetactivity(){
         try{
             // this is where we will put codes that will interact with database
@@ -321,16 +350,41 @@ public class assetactivity {
 
             PreparedStatement pstmt;
             // 2.2 Save the new asset 
-            pstmt = conn.prepareStatement ("INSERT INTO asset_activity (asset_id, activity_date, activity_description, tent_start, tent_end, act_start, act_end, cost, status) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            pstmt = conn.prepareStatement ("INSERT INTO asset_activity (asset_id, activity_date, status) VALUE (?, ?, ?)");
             pstmt.setInt(1, asset_id);
             pstmt.setDate(2, activity_date);
-            pstmt.setString(3, activity_description);
-            pstmt.setDate(4, tent_start);
-            pstmt.setDate(5, tent_end);
-            pstmt.setDate(6, act_start);
-            pstmt.setDate(7, act_end);
-            pstmt.setDouble(8, cost);
-            pstmt.setString(9, status);
+            pstmt.setString(3, status);
+            
+            if(activity_description != null){
+                pstmt = conn.prepareStatement ("INSERT INTO asset_activity (activity_description) VALUE (?)");
+                pstmt.setString(1, activity_description);
+            }
+            
+            if(tent_start != null){
+                pstmt = conn.prepareStatement ("INSERT INTO asset_activity (tent_start) VALUE (?)");
+                pstmt.setDate(1, tent_start);
+            }
+            
+            if(tent_end != null){
+                pstmt = conn.prepareStatement ("INSERT INTO asset_activity (tent_end) VALUE (?)");
+                pstmt.setDate(1, tent_end);
+            }
+            
+            if(act_start != null){
+                pstmt = conn.prepareStatement ("INSERT INTO asset_activity (act_start) VALUE (?)");
+                pstmt.setDate(1, act_start);
+            }
+            
+            if(act_end != null){
+                pstmt = conn.prepareStatement ("INSERT INTO asset_activity (act_end) VALUE (?)");
+                pstmt.setDate(1, act_end);
+            }
+            
+            if(cost != null){
+                pstmt = conn.prepareStatement ("INSERT INTO asset_activity (cost) VALUE (?)");
+                pstmt.setString(1, cost);
+            }
+            System.out.println("Successful");
             pstmt.executeUpdate();
             pstmt.close();
             conn.close();
@@ -348,12 +402,22 @@ public class assetactivity {
     
     public static void main (String args[]){
         assetactivity A = new assetactivity();
-        
+        /*
         A.activity_date = java.sql.Date.valueOf("2022-12-21");
         System.out.println(A.asset_activity_dropdown());
         for(int i = 0; i < A.activity_dateList.size(); i++){
             System.out.println(A.activity_dateList.get(i));
-        }
+        }*/
+        A.activity_date = java.sql.Date.valueOf("2022-12-23");
+        A.asset_id = 5003;
+        A.activity_description = "LOL";
+        A.tent_start = java.sql.Date.valueOf("2023-12-23");
+        A.tent_end = java.sql.Date.valueOf("2023-12-23");
+        A.act_end = java.sql.Date.valueOf("2023-12-23");
+        A.act_start = java.sql.Date.valueOf("2023-12-23");
+        A.cost = "12222.22";
+        A.status = "S";
+         A.record_assetactivity();
         
         
     }
