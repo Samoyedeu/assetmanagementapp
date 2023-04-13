@@ -14,10 +14,10 @@
     </head>
     <body>
         <form action="index.html">
-            <jsp:useBean id= "A" class="assetmanagement.assetactivity" scope="session" />
+            <jsp:useBean id= "B" class="assetmanagement.assetactivity" scope="session" />
             <% //Receive the values from register.html
-            A.asset_id = Integer.parseInt(request.getParameter("assetactivity"));
-            int status = A.delete_assetactivity();
+            B.asset_id = Integer.parseInt(request.getParameter("assetactivity"));
+            int status = B.delete_assetactivity();
             if(status == 1){
             %>
                 <h1>Deleting Asset Activity Successful</h1>

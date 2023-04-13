@@ -26,7 +26,7 @@ and open the template in the editor.
     <div class="asset_form">
       <form action="record_processing.jsp" class="form_class">
         <jsp:useBean
-          id="A"
+          id="B"
           class="assetmanagement.assetactivity"
           scope="session"
         />
@@ -37,10 +37,10 @@ and open the template in the editor.
 
             <div class="input-field">
               <select id="assetid" name="assetid" class="select_class">
-                <% A.asset_id_dropdown(); for(int i = 0; i <
-                A.asset_idList.size(); i++){ %>
-                <option value="<%=A.asset_idList.get(i)%>">
-                  <%=A.asset_idList.get(i)%>
+                <% B.asset_id_dropdown(); for(int i = 0; i <
+                B.asset_idList.size(); i++){ %>
+                <option value="<%=B.asset_idList.get(i)%>">
+                  <%=B.asset_idList.get(i)%>
                 </option>
                 <% } %>
               </select>

@@ -21,7 +21,7 @@ import="java.util.*, assetmanagement.*, java.sql.*" %>
 
     <div class="asset_form">
       <jsp:useBean
-        id="A"
+        id="B"
         class="assetmanagement.assetactivity"
         scope="session"
       />
@@ -36,10 +36,10 @@ import="java.util.*, assetmanagement.*, java.sql.*" %>
               name="activity_date"
               class="select_class"
             >
-              <% A.asset_activity_dropdown(); for(int i = 0; i <
-              A.activity_dateList.size(); i++){ %>
-              <option value="<%=A.activity_dateList.get(i)%>">
-                <%=A.activity_dateList.get(i)%>
+              <% B.asset_activity_dropdown(); for(int i = 0; i <
+              B.activity_dateList.size(); i++){ %>
+              <option value="<%=B.activity_dateList.get(i)%>">
+                <%=B.activity_dateList.get(i)%>
               </option>
               <% } %>
             </select>

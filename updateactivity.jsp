@@ -14,14 +14,14 @@
     </head>
     <body>
         <form action="updateactivity_processing.jsp">
-            <jsp:useBean id= "A" class="assetmanagement.assetactivity" scope="session" />
+            <jsp:useBean id= "B" class="assetmanagement.assetactivity" scope="session" />
             Activity:<select id="activity" name="activity">
                 <%
-                    A.activity_date = java.sql.Date.valueOf(request.getParameter("activity_date"));
-                    A.activity_for_update2();
-                    for(int i = 0; i < A.activity_dateList.size(); i++){
+                    B.activity_date = java.sql.Date.valueOf(request.getParameter("activity_date"));
+                    B.activity_for_update2();
+                    for(int i = 0; i < B.activity_dateList.size(); i++){
                 %>
-                <option value="<%=A.asset_idList.get(i)%>"><%=A.activity_descriptionList.get(i)%></option>
+                <option value="<%=B.asset_idList.get(i)%>"><%=B.activity_descriptionList.get(i)%></option>
                 <%
                     }
                 %>

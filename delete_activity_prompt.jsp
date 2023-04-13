@@ -12,14 +12,14 @@
         <title>Delete Activity Prompt</title>
     </head>
     <body>
-        <jsp:useBean id= "A" class="assetmanagement.assetactivity" scope="session" />
+        <jsp:useBean id= "B" class="assetmanagement.assetactivity" scope="session" />
         <form action="deleteassetactivity.jsp">
             Asset ID:<select id="activity_date" name="activity_date">
                 <%
-                    A.asset_activity_dropdown();
-                    for(int i = 0; i < A.activity_dateList.size(); i++){
+                    B.asset_activity_dropdown();
+                    for(int i = 0; i < B.activity_dateList.size(); i++){
                 %>
-                <option value="<%=A.activity_dateList.get(i)%>"><%=A.activity_dateList.get(i)%></option>
+                <option value="<%=B.activity_dateList.get(i)%>"><%=B.activity_dateList.get(i)%></option>
                 <%
                     }
                 %>

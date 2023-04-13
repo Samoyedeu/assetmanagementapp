@@ -14,7 +14,7 @@
     </head>
     <body>
         <form action="index.html">
-            <jsp:useBean id= "A" class="assetmanagement.assetactivity" scope="session" />
+            <jsp:useBean id= "B" class="assetmanagement.assetactivity" scope="session" />
             <% //Receive the values from updateactivity.jsp
                 String v_activity_description = request.getParameter("activity_description");
                 
@@ -25,19 +25,19 @@
                 java.sql.Date v_act_end_date = java.sql.Date.valueOf(request.getParameter("act_end"));
               
              
-                Double v_cost = Double.parseDouble(request.getParameter("cost"));
+                String v_cost = request.getParameter("cost");
                 String v_status = request.getParameter("status");
 
-                A.activity_description = v_activity_description;
-                A.tent_start = v_tent_start_date;
-                A.tent_end = v_tent_end_date;
-                A.act_start = v_act_start_date;
-                A.act_end = v_act_end_date;
-                A.cost = v_cost;
-                A.status = v_status;
-                A.asset_id = Integer.parseInt(request.getParameter("activity"));
+                B.activity_description = v_activity_description;
+                B.tent_start = v_tent_start_date;
+                B.tent_end = v_tent_end_date;
+                B.act_start = v_act_start_date;
+                B.act_end = v_act_end_date;
+                B.cost = v_cost;
+                B.status = v_status;
+                B.asset_id = Integer.parseInt(request.getParameter("activity"));
                 
-                int status = A.update_activity();
+                int status = B.update_activity();
                 if(status == 1){
             %>
                 <h1>Updating Asset Activity Successful</h1>
