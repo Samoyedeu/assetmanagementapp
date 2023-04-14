@@ -221,21 +221,36 @@ public class asset {
             System.out.println("Connection Successful");
             
             // 2. Prepare SQL Statement
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE assets SET asset_name = ?, asset_description = ?, acquisition_date = ?, forrent = ?, asset_value = ?, type_asset = ?, status = ?, loc_lattitude = ?, loc_longitude = ?, enclosing_asset = ? WHERE asset_id = ?");
-            pstmt.setString(1, asset_name);
-            pstmt.setString(2, asset_description);
-            pstmt.setDate(3, acquisition_date);
-            pstmt.setInt(4, forrent);
-            pstmt.setFloat(5, asset_value);
-            pstmt.setString(6, type_asset);
-            pstmt.setString(7, status);
-            pstmt.setString(8, loc_lattitude);
-            pstmt.setString(9, loc_longitude);
-            pstmt.setString(10, enclosing_asset);
-            pstmt.setInt(11, asset_id);
-            pstmt.executeUpdate();
-            
-            pstmt.close();
+            if(enclosing_asset != ""){
+                PreparedStatement pstmt = conn.prepareStatement("UPDATE assets SET asset_name = ?, asset_description = ?, acquisition_date = ?, forrent = ?, asset_value = ?, type_asset = ?, status = ?, loc_lattitude = ?, loc_longitude = ?, enclosing_asset = ? WHERE asset_id = ?");
+                pstmt.setString(1, asset_name);
+                pstmt.setString(2, asset_description);
+                pstmt.setDate(3, acquisition_date);
+                pstmt.setInt(4, forrent);
+                pstmt.setFloat(5, asset_value);
+                pstmt.setString(6, type_asset);
+                pstmt.setString(7, status);
+                pstmt.setString(8, loc_lattitude);
+                pstmt.setString(9, loc_longitude);
+                pstmt.setString(10, enclosing_asset);
+                pstmt.setInt(11, asset_id);
+                pstmt.executeUpdate();
+                pstmt.close();
+            } else {
+                PreparedStatement pstmt = conn.prepareStatement("UPDATE assets SET asset_name = ?, asset_description = ?, acquisition_date = ?, forrent = ?, asset_value = ?, type_asset = ?, status = ?, loc_lattitude = ?, loc_longitude = ? WHERE asset_id = ?");
+                pstmt.setString(1, asset_name);
+                pstmt.setString(2, asset_description);
+                pstmt.setDate(3, acquisition_date);
+                pstmt.setInt(4, forrent);
+                pstmt.setFloat(5, asset_value);
+                pstmt.setString(6, type_asset);
+                pstmt.setString(7, status);
+                pstmt.setString(8, loc_lattitude);
+                pstmt.setString(9, loc_longitude);
+                pstmt.setInt(10, asset_id);
+                pstmt.executeUpdate();
+                pstmt.close();
+            }
             conn.close();
             System.out.println("Successful");
             
@@ -325,23 +340,54 @@ public class asset {
             while(rst.next()) { 
                 asset_id = rst.getInt("newID");
             }
-            
             // 2.2 Save the new asset 
-            pstmt = conn.prepareStatement ("INSERT INTO assets (asset_id, asset_name, asset_description, acquisition_date, forrent, asset_value, type_asset, status, loc_lattitude, loc_longitude, hoa_name, enclosing_asset) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            pstmt.setInt(1, asset_id);
-            pstmt.setString(2, asset_name);
-            pstmt.setString(3, asset_description);
-            pstmt.setDate(4, acquisition_date);
-            pstmt.setInt(5, forrent);
-            pstmt.setFloat(6, asset_value);
-            pstmt.setString(7, type_asset);
-            pstmt.setString(8, status);
-            pstmt.setString(9, loc_lattitude);
-            pstmt.setString(10, loc_longitude);
-            pstmt.setString(11, hoa_name);
-            pstmt.setString(12, enclosing_asset);
-            pstmt.executeUpdate();
-            pstmt.close();
+            if(enclosing_asset != ""){
+                pstmt = conn.prepareStatement ("INSERT INTO assets (asset_id, asset_name, asset_description, acquisition_date, forrent, asset_value, type_asset, status, loc_lattitude, loc_longitude, hoa_name, enclosing_asset) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                pstmt.setInt(1, asset_id);
+                pstmt.setString(2, asset_name);
+                pstmt.setString(3, asset_description);
+                pstmt.setDate(4, acquisition_date);
+                pstmt.setInt(5, forrent);
+                pstmt.setFloat(6, asset_value);
+                pstmt.setString(7, type_asset);
+                pstmt.setString(8, status);
+                pstmt.setString(9, loc_lattitude);
+                pstmt.setString(10, loc_longitude);
+                pstmt.setString(11, hoa_name);
+                pstmt.setString(12, enclosing_asset);
+                pstmt.executeUpdate();
+                pstmt.close();
+            } else {
+                pstmt = conn.prepareStatement ("INSERT INTO assets (asset_id, asset_name, asset_description, acquisition_date, forrent, asset_value, type_asset, status, loc_lattitude, loc_longitude, hoa_name) VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                pstmt.setInt(1, asset_id);
+                pstmt.setString(2, asset_name);
+                pstmt.setString(3, asset_description);
+                pstmt.setDate(4, acquisition_date);
+                pstmt.setInt(5, forrent);
+                pstmt.setFloat(6, asset_value);
+                pstmt.setString(7, type_asset);
+                pstmt.setString(8, status);
+                pstmt.setString(9, loc_lattitude);
+                pstmt.setString(10, loc_longitude);
+                pstmt.setString(11, hoa_name);
+                pstmt.executeUpdate();
+                pstmt.close();
+            }
+        
+            /*if(enclosing_asset != null){
+                PreparedStatement pstmt2 = conn.prepareStatement("UPDATE assets SET enclosing_asset = ? WHERE asset_id = ?");
+                pstmt2.setString(1, enclosing_asset);
+                pstmt2.setInt(2, asset_id);
+                pstmt.executeUpdate();
+                pstmt2.executeUpdate();
+                pstmt2.close();
+                
+            } else {*/
+               // pstmt.executeUpdate();
+           // }
+            //pstmt.close();
+
+            
             conn.close();
             System.out.println("Successful");
             return 1;
@@ -368,10 +414,11 @@ public class asset {
         A.loc_lattitude = "300";
         A.loc_longitude = "200";
         A.hoa_name = "SJH";   
-        A.enclosing_asset = "N/A";
+        //A.enclosing_asset = "5002";
         //A.enclosing_asset = Integer.parseInt(null);
         System.out.println(A.register_asset());
          /*A.asset_for_update();*/
+         
 
         
     }

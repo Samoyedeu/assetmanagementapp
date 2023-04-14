@@ -1,6 +1,6 @@
 <%-- Document : updateasset Created on : 04 6, 23, 1:55:09 AM Author :
-ccslearner --%> <%@page contentType="text/html" pageEncoding="UTF-8"%> <%@page
-import="java.util.*, assetmanagement.*, java.sql.*" %>
+ccslearner --%> <%@page contentType="text/html" pageEncoding="UTF-8"%> 
+<%@page import="java.util.*, assetmanagement.*, java.sql.*" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -142,3 +142,4 @@ import="java.util.*, assetmanagement.*, java.sql.*" %>
     </div>
   </body>
 </html>
+

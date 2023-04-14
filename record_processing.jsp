@@ -19,7 +19,7 @@
             <div class="logo">Joenh Co. Realty</div>
         </header>
         <div class="asset_form">
-            <form class="form_class">
+            <form action="index.html" class="form_class">
                 <jsp:useBean id= "B" class="assetmanagement.assetactivity" scope="session" />
                 <% //Receive the values from register.html
                     Integer v_assetid = Integer.parseInt(request.getParameter("assetid"));
@@ -33,7 +33,7 @@
                     java.sql.Date v_act_start_date = java.sql.Date.valueOf(request.getParameter("act_start"));
                     java.sql.Date v_act_end_date = java.sql.Date.valueOf(request.getParameter("act_end"));
 
-                    String v_cost =request.getParameter("cost");
+                    String v_cost = request.getParameter("cost");
                     String v_status = request.getParameter("status");
 
                     B.asset_id = v_assetid;

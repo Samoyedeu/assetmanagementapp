@@ -348,45 +348,103 @@ public class assetactivity {
             // 2.1 To get the next Asset Activity ID
             
 
-            PreparedStatement pstmt;
             // 2.2 Save the new asset 
-            pstmt = conn.prepareStatement ("INSERT INTO asset_activity (asset_id, activity_date, status) VALUE (?, ?, ?)");
+            PreparedStatement pstmt = conn.prepareStatement ("INSERT INTO asset_activity (asset_id, activity_date, status) VALUE (?, ?, ?)");
             pstmt.setInt(1, asset_id);
             pstmt.setDate(2, activity_date);
             pstmt.setString(3, status);
-            
-            if(activity_description != null){
-                pstmt = conn.prepareStatement ("INSERT INTO asset_activity (activity_description) VALUE (?)");
-                pstmt.setString(1, activity_description);
-            }
-            
-            if(tent_start != null){
-                pstmt = conn.prepareStatement ("INSERT INTO asset_activity (tent_start) VALUE (?)");
-                pstmt.setDate(1, tent_start);
-            }
-            
-            if(tent_end != null){
-                pstmt = conn.prepareStatement ("INSERT INTO asset_activity (tent_end) VALUE (?)");
-                pstmt.setDate(1, tent_end);
-            }
-            
-            if(act_start != null){
-                pstmt = conn.prepareStatement ("INSERT INTO asset_activity (act_start) VALUE (?)");
-                pstmt.setDate(1, act_start);
-            }
-            
-            if(act_end != null){
-                pstmt = conn.prepareStatement ("INSERT INTO asset_activity (act_end) VALUE (?)");
-                pstmt.setDate(1, act_end);
-            }
-            
-            if(cost != null){
-                pstmt = conn.prepareStatement ("INSERT INTO asset_activity (cost) VALUE (?)");
-                pstmt.setString(1, cost);
-            }
-            System.out.println("Successful");
             pstmt.executeUpdate();
             pstmt.close();
+            
+            if(activity_description != ""){
+            PreparedStatement pstmt2 = conn.prepareStatement ("UPDATE asset_activity SET activity_description = ? WHERE asset_id = ? AND activity_date = ?");
+            pstmt2.setString(1, activity_description);
+            pstmt2.setInt(2, asset_id);
+            pstmt2.setDate(3, activity_date);
+            pstmt2.executeUpdate();
+            pstmt2.close();
+            }
+            
+            if(tent_start.compareTo(java.sql.Date.valueOf("2023-04-15")) == 0){
+                PreparedStatement pstmt3 = conn.prepareStatement ("UPDATE asset_activity SET tent_start = ? WHERE asset_id = ? AND activity_date = ?");
+                tent_start = null;
+                pstmt3.setDate(1, tent_start);
+                pstmt3.setInt(2, asset_id);
+                pstmt3.setDate(3, activity_date);
+                pstmt3.executeUpdate();
+                pstmt3.close();
+            } else {
+                PreparedStatement pstmt3 = conn.prepareStatement ("UPDATE asset_activity SET tent_start = ? WHERE asset_id = ? AND activity_date = ?");
+                
+                pstmt3.setDate(1, tent_start);
+                pstmt3.setInt(2, asset_id);
+                pstmt3.setDate(3, activity_date);
+                pstmt3.executeUpdate();
+                pstmt3.close();
+            }
+            
+            if(tent_end.compareTo(java.sql.Date.valueOf("2023-04-15")) == 0){
+                PreparedStatement pstmt4 = conn.prepareStatement ("UPDATE asset_activity SET tent_end = ? WHERE asset_id = ? AND activity_date = ?");
+                tent_end = null;
+                pstmt4.setDate(1, tent_end);
+                pstmt4.setInt(2, asset_id);
+                pstmt4.setDate(3, activity_date);
+                pstmt4.executeUpdate();
+                pstmt4.close();
+            } else {
+                PreparedStatement pstmt4 = conn.prepareStatement ("UPDATE asset_activity SET tent_end = ? WHERE asset_id = ? AND activity_date = ?");
+                
+                pstmt4.setDate(1, tent_end);
+                pstmt4.setInt(2, asset_id);
+                pstmt4.setDate(3, activity_date);
+                pstmt4.executeUpdate();
+                pstmt4.close();
+            }
+            
+            if(act_start.compareTo(java.sql.Date.valueOf("2023-04-15")) == 0){
+                PreparedStatement pstmt5 = conn.prepareStatement ("UPDATE asset_activity SET act_start = ? WHERE asset_id = ? AND activity_date = ?");
+                act_start = null;
+                pstmt5.setDate(1, act_start);
+                pstmt5.setInt(2, asset_id);
+                pstmt5.setDate(3, activity_date);
+                pstmt5.executeUpdate();
+                pstmt5.close();
+            } else {
+                PreparedStatement pstmt5 = conn.prepareStatement ("UPDATE asset_activity SET act_start = ? WHERE asset_id = ? AND activity_date = ?");
+                pstmt5.setDate(1, act_start);
+                pstmt5.setInt(2, asset_id);
+                pstmt5.setDate(3, activity_date);
+                pstmt5.executeUpdate();
+                pstmt5.close();
+            }
+                  
+            
+            if(act_end.compareTo(java.sql.Date.valueOf("2023-04-15")) == 0){
+                PreparedStatement pstmt6 = conn.prepareStatement ("UPDATE asset_activity SET act_end = ? WHERE asset_id = ? AND activity_date = ?");
+                act_end = null;
+                pstmt6.setDate(1, act_end);
+                pstmt6.setInt(2, asset_id);
+                pstmt6.setDate(3, activity_date);
+                pstmt6.executeUpdate();
+                pstmt6.close();
+            } else {
+                PreparedStatement pstmt6 = conn.prepareStatement ("UPDATE asset_activity SET act_end = ? WHERE asset_id = ? AND activity_date = ?");
+                pstmt6.setDate(1, act_end);
+                pstmt6.setInt(2, asset_id);
+                pstmt6.setDate(3, activity_date);
+                pstmt6.executeUpdate();
+                pstmt6.close();
+            }
+            
+            if(cost != ""){
+            PreparedStatement pstmt7 = conn.prepareStatement ("UPDATE asset_activity SET cost = ? WHERE asset_id = ? AND activity_date = ?");
+            pstmt7.setString(1, cost);
+            pstmt7.setInt(2, asset_id);
+            pstmt7.setDate(3, activity_date);
+            pstmt7.executeUpdate();
+            pstmt7.close();
+            }
+
             conn.close();
             System.out.println("Successful");
             return 1;
@@ -417,7 +475,7 @@ public class assetactivity {
         A.act_start = java.sql.Date.valueOf("2023-12-23");
         A.cost = "12222.22";
         A.status = "S";
-         A.record_assetactivity();
+        A.record_assetactivity();
         
         
     }

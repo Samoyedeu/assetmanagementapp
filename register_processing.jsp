@@ -34,6 +34,12 @@
                     String v_loc_lattitude = request.getParameter("location_mapx");
                     String v_loc_longitude = request.getParameter("location_mapy");
                     String v_enclosing_asset = request.getParameter("location_assetid");
+                    /*if(request.getParameter("location_assetid") == ""){
+                        A.enclosing_asset = null;
+                    } else {
+                        v_enclosing_asset = request.getParameter("location_assetid");
+                    }*/
+
                     String v_hoa_name = request.getParameter("hoaname");
                     A.asset_name = v_asset_name;
                     A.asset_description = v_asset_description;
