@@ -27,44 +27,56 @@ and open the template in the editor.
         <form action="register_processing.jsp" class="form_class">
           <div class="col1">
             <h2 class="titleLabel">Register Asset</h2>
-            <span class="title">Asset Name</span>
+            
             <div class="fields">
+              <span class="title">Asset Name</span>
               <div class="input-field">
                 <input type="text" id="asset_name" name="asset_name" />
               </div>
             </div>
-            <span class="title">Asset Description</span>
+            
             <div class="fields">
+              <span class="title">Asset Description</span>
               <div class="input-field">
                 <input type="text" id="description" name="description" /><br />
               </div>
             </div>
-            <span class="title">Acquisition Date</span>
+            
+            
             <div class="fields">
+              <span class="title">Acquisition Date</span>
               <div class="input-field">
                 <input type="date" id="acq_date" name="acq_date" /><br />
               </div>
             </div>
-            <span class="title">For Rent?</span>
+            
             <div class="fields">
-              <div class="input-field">
-                <input
-                  type="number"
-                  id="forrent"
-                  name="forrent"
-                  min="0"
-                  max="1"
-                />
-              </div>
+                <span class="title">For Rent?</span>
+                <div class="input-field">
+                    <div id="choice">
+                        <div id="choice1">
+                            <input type="radio" id="Yes" name="forrent" value="1">
+                            <label for="Yes">Yes</label>    
+                        </div>
+                                        
+                        <div id="choice2">
+                            <input type="radio" id="No" name="forrent" value="0">
+                            <label for="No">No</label>    
+                        </div>
+                    </div>
+                </div>
             </div>
-            <span class="title">Asset Value</span>
+            
+            
             <div class="fields">
+              <span class="title">Asset Value</span>
               <div class="input-field">
                 <input type="text" id="value" name="value" />
               </div>
             </div>
-            <span class="title">Type Asset</span>
+            
             <div class="fields">
+              <span class="title">Type Asset</span>
               <div class="input-field">
                 <select name="type" class="select_class" id="type">
                   <option value="P">Property</option>
@@ -77,8 +89,8 @@ and open the template in the editor.
           </div>
 
           <div class="col1">
-            <span class="title">Status</span>
             <div class="fields">
+              <span class="title">Status</span>
               <div class="input-field">
                 <select name="status" class="select_class" id="status">
                   <option value="W">Working Condition</option>
@@ -89,31 +101,38 @@ and open the template in the editor.
                 </select>
               </div>
             </div>
-            <span class="title">Location Latitude</span>
+              
+            
             <div class="fields">
+              <span class="title">Location Latitude</span>
               <div class="input-field">
                 <input type="text" id="location_mapx" name="location_mapx" />
               </div>
             </div>
-            <span class="title">Location Longitude</span>
+            
+            
             <div class="fields">
+              <span class="title">Location Longitude</span>
               <div class="input-field">
                 <input type="text" id="location_mapy" name="location_mapy" />
               </div>
             </div>
-            <span class="title">Homeowner Association Name</span>
+            
             <div class="fields">
+              <span class="title">Homeowner Association Name</span>
               <div class="input-field">
                 <input type="text" id="hoaname" name="hoaname" />
               </div>
             </div>
-            <span class="title">Enclosing Asset</span>
+              
             <div class="fields">
+              <span class="title">Enclosing Asset</span>
               <div class="input-field">
                 <input
                   type="text"
                   id="location_assetid"
                   name="location_assetid"
+                  value=""
                 />
               </div>
             </div>
