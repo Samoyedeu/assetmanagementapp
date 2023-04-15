@@ -44,7 +44,8 @@ header .pages li a{
 
 
 .container {
-    max-width: auto;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 #home {
