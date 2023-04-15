@@ -11,8 +11,10 @@ and open the template in the editor.
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="reset.css" />
+
   </head>
   <body class="register_body">
+      
     <header>
       <div class="logo">Joenh Co. Realty</div>
       <div class="pages">
@@ -122,10 +124,31 @@ and open the template in the editor.
                 />
               </div>
             </div>
-            <input type="submit" value="Submit" class="btn-submit" />
+            <input type="submit" value="Submit" class="btn-submit" id="submit-button"/>
           </div>
         </form>
       </div>
     </div>
+    <script>
+        function checkSubmit() {
+            var inputs = document.querySelectorAll('.input-field input, .input-field select');
+            var hasEmpty = false;
+            inputs.forEach(function(input) {
+              if (!input.value && input.id !== 'location_assetid') {
+                hasEmpty = true;
+              }
+            });
+            document.querySelector('.btn-submit').disabled = hasEmpty;
+          }
+
+          document.addEventListener('DOMContentLoaded', function() {
+            checkSubmit();
+            document.querySelectorAll('.input-field input, .input-field select').forEach(function(input) {
+              input.addEventListener('input', checkSubmit);
+            });
+          });
+
+    </script>
+
   </body>
 </html>
