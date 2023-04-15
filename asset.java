@@ -401,6 +401,76 @@ public class asset {
             
     }
     
+    
+    public int asset_name_dropdown(){
+        try{
+            // 1. Connect to our database
+            Connection conn;
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            System.out.println("Connection Successful");
+            
+            // 2. Prepare SQL Statement
+            PreparedStatement pstmt = conn.prepareStatement("SELECT asset_name FROM assets");
+            ResultSet rst = pstmt.executeQuery();
+            asset_namelist.clear();
+          
+            
+            while(rst.next()) { 
+                  
+                asset_name = rst.getString("asset_name");
+                asset_namelist.add(asset_name);
+            }
+            
+            pstmt.close();
+            conn.close();
+            System.out.println("Successful");
+            return 1;
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            return 0;
+        }
+    }
+    
+    // SAMPLE IMPLEMENTATION 
+    public static Asset getAssetById(int assetId) {
+        Asset asset = null;
+        try {
+            // Connect to database
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+
+            // Create SQL query to retrieve asset with given asset ID
+            String query = "SELECT * FROM assets WHERE asset_id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, assetId);
+            ResultSet rs = pstmt.executeQuery();
+
+            // Create asset object with values from database
+            if (rs.next()) {
+                String assetName = rs.getString("asset_name");
+                String assetDescription = rs.getString("asset_description");
+                Date acquisitionDate = rs.getDate("acquisition_date");
+                int forRent = rs.getInt("forrent");
+                float assetValue = rs.getFloat("asset_value");
+                String typeAsset = rs.getString("type_asset");
+                String status = rs.getString("status");
+                String locLattitude = rs.getString("loc_lattitude");
+                String locLongitude = rs.getString("loc_longitude");
+                String hoaName = rs.getString("hoa_name");
+                String enclosingAsset = rs.getString("enclosing_asset");
+                asset = new Asset(assetId, assetName, assetDescription, acquisitionDate, forRent, assetValue, typeAsset, status, locLattitude, locLongitude, hoaName, enclosingAsset);
+            }
+
+            // Close database connections
+            rs.close();
+            pstmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return asset;
+    }
+
     public static void main (String args[]){
         asset A = new asset();
         
@@ -416,7 +486,9 @@ public class asset {
         A.hoa_name = "SJH";   
         //A.enclosing_asset = "5002";
         //A.enclosing_asset = Integer.parseInt(null);
-        System.out.println(A.register_asset());
+        A.register_asset();
+        A.asset_for_deletion();
+        // System.out.println(A.register_asset());
          /*A.asset_for_update();*/
          
 

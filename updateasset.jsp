@@ -26,23 +26,16 @@ ccslearner --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
           <div class="col1">
             <h2 class="titleLabel">Update Asset</h2>
             <div class="fields">
-              <span class="title">Asset</span>
-              <div class="input-field">
-                <select id="asset" name="asset" class="select_class">
-                  <% A.asset_for_update(); for(int i = 0; i <
-                  A.asset_idlist.size(); i++){ %>
-                  <option value="<%=A.asset_idlist.get(i)%>">
-                    <%=A.asset_namelist.get(i)%>
-                  </option>
-                  <% } %>
-                </select>
-              </div>
+                <span class="title">Asset:</span>
+                <div class="input-field">
+                    <input type="text" name="asset_name" value="<%=request.getParameter("asset_name")%>" readonly/>
+                </div>
             </div>
 
             <div class="fields">
               <span class="title">Asset Name</span>
               <div class="input-field">
-                <input type="text" id="asset_name" name="asset_name" />
+                <input type="text" id="asset_name" name="asset_name" value="<%=request.getParameter("asset_name")%>"/>
               </div>
             </div>
 
