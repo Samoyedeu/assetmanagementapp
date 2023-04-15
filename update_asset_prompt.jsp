@@ -4,8 +4,8 @@
     Author     : ccslearner
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%> 
-<%@page import="java.util.*, assetmanagement.*, java.sql.*" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%> <%@page
+import="java.util.*, assetmanagement.*, java.sql.*" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -37,13 +37,14 @@
           <span class="title"> Asset</span>
           <div class="input-field">
             <select
-              id="asset_id"
-              name="asset_id"
+              id="asset_name"
+              name="asset_name"
               class="select_class"
             >
-              <% A.asset_name_dropdown(); 
-              for(int i = 0; i < A.asset_idlist.size(); i++){ %>
-              <option value="<%=A.asset_idlist.get(i)%>"><%=A.asset_idlist.get(i)%>
+              <% A.asset_name_dropdown(); for(int i = 0; i <
+              A.asset_namelist.size(); i++){ %>
+              <option value="<%=A.asset_namelist.get(i)%>">
+                <%=A.asset_namelist.get(i)%>
               </option>
               <% } %>
             </select>
@@ -55,3 +56,4 @@
     </div>
   </body>
 </html>
+

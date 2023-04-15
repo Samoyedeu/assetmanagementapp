@@ -25,7 +25,7 @@ import="java.util.*, assetmanagement.*, java.sql.*" %>
         class="assetmanagement.assetactivity"
         scope="session"
       />
-      <form action="update_activity_getAssetId.jsp" class="form_class">
+      <form action="updateactivity.jsp" class="form_class">
         <h2 class="titleLabel">Update Activity</h2>
 
         <div class="fields">
@@ -51,5 +51,3 @@ import="java.util.*, assetmanagement.*, java.sql.*" %>
     </div>
   </body>
 </html>
-
-

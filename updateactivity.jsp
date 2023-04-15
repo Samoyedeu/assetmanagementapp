@@ -27,14 +27,27 @@
         <div class="asset_form">
             <form action="updateactivity_processing.jsp" class="form_class">
             <jsp:useBean id= "B" class="assetmanagement.assetactivity" scope="session" />
-            <%
-                B.asset_id = Integer.parseInt(request.getParameter("activity"));
-                B.activity_for_update3();
             
-            %>
             <div class="container">
                 <div class="col1">
                 <h2 class="titleLabel">Update Activity</h2>
+            
+                <div class="fields">
+                    <span class="title">Activity</span>
+                    <div class="input-field">
+                        <select id="activity" name="activity">
+                        <%
+                            B.activity_date = java.sql.Date.valueOf(request.getParameter("activity_date"));
+                            B.activity_for_update2();
+                            for(int i = 0; i < B.activity_dateList.size(); i++){
+                        %>
+                        <option value="<%=B.asset_idList.get(i)%>"><%=B.activity_descriptionList.get(i)%></option>
+                        <%
+                            }
+                        %>
+                        </select>
+                    </div>
+                </div>
 
                 <div class="fields">
                     <span class="title">Activity Description</span>
