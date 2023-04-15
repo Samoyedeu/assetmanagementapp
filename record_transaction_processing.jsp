@@ -46,14 +46,17 @@
                           
                     int status = C.register();
                     if(status == 1){
-                %>
-                    <h1>Recording Transaction Successful</h1>
-                <% } else {
-                %>
-                    <h1>Recording Transaction Failed</h1>
-                <% }
-                %>
-                <input type="submit" value="Proceed to Record Asset Activity" class="btn-submit">
+                    %>
+                        <h1>Recording Transaction Successful</h1>
+                        <form action="recordact.jsp">
+                            <input type="submit" value="Proceed to Record Asset Activity" class="btn-submit">
+                        </form>
+                    <% } else {
+                        %>
+                        <h2>Recording Transaction Failed</h2>
+                        <h2> You are being Redirected to the Homepage</h2>
+                        <% response.setHeader("Refresh", "5; URL=index.html"); %>
+                    <% } %>
             </form>
         </div>
         
