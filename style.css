@@ -11,12 +11,6 @@ body {
      background: linear-gradient(to right bottom, #f7a64e, #ff6b6b, #a04cf7);
 }
 
-.register_body{
-    
-    background-image: linear-gradient(to left bottom, #4112ff, #005aff, #0080ff, #009fff, #5bbaff, #67bcff, #71bdff, #7bbfff, #5ca7ff, #598aff, #7167fd, #9232e8, 598aff), url(./assets/hero.png);
-
-}
-
 header {
     display: flex;
     justify-content: space-between;
@@ -249,11 +243,6 @@ header .pages li a{
 
 #record_submit{
     margin-top: 20px;
-}
-
-.btn-submit:hover {
-    background-color: #005aff;
-    color: white;
 }
 
 #choice {
