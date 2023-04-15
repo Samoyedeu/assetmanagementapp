@@ -223,7 +223,59 @@ public class assetactivity {
         }
     }
     
+    
+    
+    public int activity_for_update3(){
+        try{
+            // 1. Connect to our database
+            Connection conn;
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
+            System.out.println("Connection Successful");
+            
+            // 2. Prepare SQL Statement
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM asset_activity WHERE activity_date = ? AND asset_id = ?");
+            pstmt.setDate(1, activity_date);
+            pstmt.setInt(2, asset_id);
+            ResultSet rst = pstmt.executeQuery();
+            activity_descriptionList.clear();
+            tent_startList.clear();
+            tent_endList.clear();
+            act_startList.clear();
+            act_endList.clear();
+            costList.clear();
+            statusList.clear();
+          
+            
+            while(rst.next()) { 
+                activity_description = rst.getString("activity_description");
+                tent_start = rst.getDate("tent_start");
+                tent_end = rst.getDate("tent_end");
+                act_start = rst.getDate("act_start");
+                act_end = rst.getDate("act_end");
+                cost = rst.getString("cost");
+                status = rst.getString("status");
+            
+                activity_descriptionList.add(activity_description);
+                tent_startList.add(tent_start);
+                tent_endList.add(tent_end);
+                act_startList.add(act_start);
+                act_endList.add(act_end);
+                costList.add(cost);
+                statusList.add(status);
+            }
+            
+            pstmt.close();
+            conn.close();
+            System.out.println("Successful");
+            return 1;
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            return 0;
+        }
+    }
+    
     public int activity_for_update2(){
+        
         try{
             // 1. Connect to our database
             Connection conn;
@@ -456,6 +508,42 @@ public class assetactivity {
             return 0;
         }
             
+    }
+    
+    public int getAsset_id() {
+        return asset_id;
+    }
+
+    public java.sql.Date getActivity_date() {
+        return activity_date;
+    }
+
+    public String getActivity_description() {
+        return activity_description;
+    }
+
+    public java.sql.Date getTent_start() {
+        return tent_start;
+    }
+
+    public java.sql.Date getTent_end() {
+        return tent_end;
+    }
+
+    public java.sql.Date getAct_start() {
+        return act_start;
+    }
+
+    public java.sql.Date getAct_end() {
+        return act_end;
+    }
+
+    public String getCost() {
+        return cost;
+    }
+
+    public String getStatus() {
+        return status;
     }
     
     public static void main (String args[]){
