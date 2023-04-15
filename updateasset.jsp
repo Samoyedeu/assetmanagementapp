@@ -23,57 +23,58 @@ ccslearner --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
       <form action="updateasset_processing.jsp" class="form_class">
         <div class="formEdit">
           <jsp:useBean id="A" class="assetmanagement.asset" scope="session" />
+          <% 
+              A.asset_id = Integer.parseInt(request.getParameter("asset_id"));
+              A.asset_for_update();
+          %>
           <div class="col1">
             <h2 class="titleLabel">Update Asset</h2>
             <div class="fields">
-                <span class="title">Asset:</span>
+                <span class="title">Asset ID:</span>
                 <div class="input-field">
-                    <input type="text" name="asset_name" value="<%=request.getParameter("asset_name")%>" readonly/>
+                    <input type="text" id="asset_id" name="asset_id" value="${A.assetId}" readonly/>
                 </div>
             </div>
 
             <div class="fields">
               <span class="title">Asset Name</span>
               <div class="input-field">
-                <input type="text" id="asset_name" name="asset_name" value="<%=request.getParameter("asset_name")%>"/>
+                  <input type="text" id="asset_name" name="asset_name" value="${A.name}"/>
               </div>
             </div>
 
             <div class="fields">
               <span class="title">Description</span>
               <div class="input-field">
-                <input type="text" id="description" name="description" />
+                  <input type="text" id="description" name="description" value="${A.description}" />
               </div>
             </div>
 
             <div class="fields">
               <span class="title">Acquisition Date</span>
               <div class="input-field">
-                <input type="date" id="acq_date" name="acq_date" />
+                  <input type="date" id="acq_date" name="acq_date" value="${A.acquisitionDate}"/>
               </div>
             </div>
 
+            <span class="title">For Rent?</span>
             <div class="fields">
-              <span class="title">For Rent?</span>
               <div class="input-field">
-                <div id="choice">
-                  <div id="choice1">
-                    <input type="radio" id="Yes" name="forrent" value="1" />
-                    <label for="Yes">Yes</label>
-                  </div>
-
-                  <div id="choice2">
-                    <input type="radio" id="No" name="forrent" value="0" />
-                    <label for="No">No</label>
-                  </div>
-                </div>
+                <input
+                  type="number"
+                  id="forrent"
+                  name="forrent"
+                  min="0"
+                  max="1"
+                  value="${A.forrent}"
+                />
               </div>
             </div>
 
             <div class="fields">
               <span class="title">Value</span>
               <div class="input-field">
-                <input type="text" id="value" name="value" />
+                  <input type="text" id="value" name="value" value="${A.assetValue}" />
               </div>
             </div>
           </div>
@@ -82,11 +83,11 @@ ccslearner --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
             <div class="fields">
               <span class="title">Type</span>
               <div class="input-field">
-                <select name="type" id="type" class="select_class">
-                  <option value="P">Property</option>
-                  <option value="E">Equipment</option>
-                  <option value="F">Furniture and Fixtures</option>
-                  <option value="O">Other Assets</option>
+                  <select name="type" id="type" class="select_class">
+                  <option value="P"  ${A.typeAsset eq 'P' ? 'selected' : ''}>Property</option>
+                  <option value="E"  ${A.typeAsset eq 'E' ? 'selected' : ''}>Equipment</option>
+                  <option value="F"  ${A.typeAsset eq 'F' ? 'selected' : ''}>Furniture and Fixtures</option>
+                  <option value="O"  ${A.typeAsset eq 'O' ? 'selected' : ''}>Other Assets</option>
                 </select>
               </div>
             </div>
@@ -94,11 +95,11 @@ ccslearner --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
             <div class="fields">
               <span class="title">Status:</span>
               <div class="input-field">
-                <select name="status" id="type" class="select_class">
-                  <option value="W">Working Condition</option>
-                  <option value="D">Deteriorated</option>
-                  <option value="P">For Repair</option>
-                  <option value="S">For Disposal</option>
+                  <select name="status" id="type" class="select_class">
+                  <option value="W"  ${A.status eq 'W' ? 'selected' : ''}>Working Condition</option>
+                  <option value="D"  ${A.status eq 'D' ? 'selected' : ''}>Deteriorated</option>
+                  <option value="P"  ${A.status eq 'P' ? 'selected' : ''}>For Repair</option>
+                  <option value="S"  ${A.status eq 'S' ? 'selected' : ''}>For Disposal</option>
                 </select>
               </div>
             </div>
@@ -106,14 +107,14 @@ ccslearner --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
             <div class="fields">
               <span class="title">Location Latitude</span>
               <div class="input-field">
-                <input type="text" id="location_mapx" name="location_mapx" />
+                  <input type="text" id="location_mapx" name="location_mapx" value="${A.lattitude}" />
               </div>
             </div>
 
             <div class="fields">
               <span class="title">Location Longitude</span>
               <div class="input-field">
-                <input type="text" id="location_mapy" name="location_mapy" />
+                  <input type="text" id="location_mapy" name="location_mapy" value="${A.longitude}" />
               </div>
             </div>
 
@@ -124,6 +125,7 @@ ccslearner --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
                   type="number"
                   id="location_assetid"
                   name="location_assetid"
+                  value="${A.enclosingAsset}"
                 />
               </div>
             </div>

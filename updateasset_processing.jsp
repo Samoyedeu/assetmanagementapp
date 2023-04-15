@@ -43,7 +43,7 @@
                 A.loc_lattitude = v_location_mapx;
                 A.loc_longitude = v_location_mapy;
                 A.enclosing_asset = v_location_assetid;
-                A.asset_id = Integer.parseInt(request.getParameter("asset"));
+                A.asset_id = Integer.parseInt(request.getParameter("asset_id"));
                 int status = A.update_asset();
                 if(status == 1){
                 %>

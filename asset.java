@@ -269,9 +269,9 @@ public class asset {
             System.out.println("Connection Successful");
             
             // 2. Prepare SQL Statement
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM assets");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM assets WHERE asset_id = ?");
+            pstmt.setInt(1, asset_id);
             ResultSet rst = pstmt.executeQuery();
-            asset_idlist.clear();
             asset_namelist.clear();
             asset_descriptionlist.clear();
             acquisition_datelist.clear();
@@ -286,7 +286,6 @@ public class asset {
             
             
             while(rst.next()) { 
-                asset_id = rst.getInt("asset_id");
                 asset_name = rst.getString("asset_name");
                 asset_description = rst.getString("asset_description");
                 acquisition_date = rst.getDate("acquisition_date");
@@ -410,15 +409,15 @@ public class asset {
             System.out.println("Connection Successful");
             
             // 2. Prepare SQL Statement
-            PreparedStatement pstmt = conn.prepareStatement("SELECT asset_name FROM assets");
+            PreparedStatement pstmt = conn.prepareStatement("SELECT asset_id FROM assets");
             ResultSet rst = pstmt.executeQuery();
-            asset_namelist.clear();
+            asset_idlist.clear();
           
             
             while(rst.next()) { 
                   
-                asset_name = rst.getString("asset_name");
-                asset_namelist.add(asset_name);
+                asset_id = rst.getInt("asset_id");
+                asset_idlist.add(asset_id);
             }
             
             pstmt.close();
@@ -431,6 +430,45 @@ public class asset {
         }
     }
     
+    public int getAssetId(){
+        return asset_id;
+    }
+    
+    public String getName(){
+        return asset_name;
+    }
+    
+    public String getDescription(){
+        return asset_description;
+    }
+    public java.sql.Date getAcquisitionDate (){
+        return acquisition_date;
+    }
+    public int getForrent(){
+        return forrent;
+    }
+    public float getAssetValue(){
+        return asset_value;
+    }
+    public String getTypeAsset(){
+        return type_asset;
+    }
+    public String getStatus(){
+        return status;
+    } 
+    public String getLattitude(){
+        return loc_lattitude;
+    }
+    public String getLongitude(){
+        return loc_longitude;
+    }
+    public String getEnclosingAsset(){
+            return enclosing_asset;
+    }
+    public String getHoaName(){
+        return hoa_name;
+    }
+    /*
     // SAMPLE IMPLEMENTATION 
     public static Asset getAssetById(int assetId) {
         Asset asset = null;
@@ -469,7 +507,7 @@ public class asset {
         }
 
         return asset;
-    }
+    }  */
 
     public static void main (String args[]){
         asset A = new asset();
