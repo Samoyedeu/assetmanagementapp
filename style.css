@@ -8,7 +8,7 @@
 
 html,
 body {
-    background-image: linear-gradient(to right bottom, #4112ff, #006cff, #0099ff, #00bcff, #00dafd, #00dbfb, #00dcf8, #00ddf6, #00c3fb, #00a5f7, #5684e5, #845ec2);
+     background: linear-gradient(to right bottom, #f7a64e, #ff6b6b, #a04cf7);
 }
 
 .register_body{
@@ -44,9 +44,7 @@ header .pages li a{
 
 
 .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding-bottom: 200px;
+    max-width: auto;
 }
 
 #home {
@@ -169,7 +167,7 @@ header .pages li a{
 }
 
 .register_body .asset_form {    
-    width: 41.5rem;
+    width: 39rem;
 }
 
 .recordAct_body .asset_form {
@@ -182,6 +180,10 @@ header .pages li a{
 
 .recordAct_body .asset_form{    
     width: 38.5rem;
+}
+
+.updateAct_body .container{
+    width: 50rem;
 }
 
 .asset_form .formEdit {

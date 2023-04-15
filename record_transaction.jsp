@@ -74,14 +74,18 @@
           <span class="title">Is Deleted?</span>
             <div class="fields">
               <div class="input-field">
-                <input
-                  type="number"
-                  id="isdeleted"
-                  name="isdeleted"
-                  min="0"
-                  max="1"
-                />
-              </div>
+                    <div id="choice">
+                        <div id="choice1">
+                            <input type="radio" id="Yes" name="isdeleted" value=1>
+                            <label for="Yes">Yes</label>    
+                        </div>
+                                        
+                        <div id="choice2">
+                            <input type="radio" id="No" name="isdeleted" value=0>
+                            <label for="No">No</label>    
+                        </div>
+                    </div>
+                </div>
             </div>
               
           <div class="fields">

@@ -11,35 +11,107 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Update Asset Activity Information</title>
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="reset.css" />
     </head>
-    <body>
-        <form action="updateactivity_processing.jsp">
+    <body class="updateAct_body">
+        <header>
+            <div class="logo">Joenh Co. Realty</div>
+            <div class="pages">
+              <button class="inAction">
+                <a href="index.html">Return to Home</a>
+              </button>
+            </div>
+        </header>
+        
+        <div class="asset_form">
+            <form action="updateactivity_processing.jsp" class="form_class">
             <jsp:useBean id= "B" class="assetmanagement.assetactivity" scope="session" />
-            Activity:<select id="activity" name="activity">
-                <%
-                    B.activity_date = java.sql.Date.valueOf(request.getParameter("activity_date"));
-                    B.activity_for_update2();
-                    for(int i = 0; i < B.activity_dateList.size(); i++){
-                %>
-                <option value="<%=B.asset_idList.get(i)%>"><%=B.activity_descriptionList.get(i)%></option>
-                <%
-                    }
-                %>
-            </select><br>
-            Activity Description: <input type="text" id="activity_description" name="activity_description"><br>
-            Tent Start Date: <input type="date" id="tent_start" name="tent_start"><br>
-            Tent End Date: <input type="date" id="tent_end" name="tent_end"><br>
-            Actual Start Date: <input type="date" id="act_start" name="act_start"><br>
-            Actual End Date: <input type="date" id="act_end" name="act_end"><br>
-            Cost: <input type="text" id="cost" name="cost"><br>
-            <label for="status">Status:</label>
-                <select name="status" id="type">
-                  <option value="S">Scheduled</option>
-                  <option value="O">Ongoing</option>
-                  <option value="C">Completed</option>
-                </select><br>
+            
+            <div class="container">
+                <div class="col1">
+                <h2 class="titleLabel">Update Activity</h2>
+            
+                <div class="fields">
+                    <span class="title">Activity</span>
+                    <div class="input-field">
+                        <select id="activity" name="activity">
+                        <%
+                            B.activity_date = java.sql.Date.valueOf(request.getParameter("activity_date"));
+                            B.activity_for_update2();
+                            for(int i = 0; i < B.activity_dateList.size(); i++){
+                        %>
+                        <option value="<%=B.asset_idList.get(i)%>"><%=B.activity_descriptionList.get(i)%></option>
+                        <%
+                            }
+                        %>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="fields">
+                    <span class="title">Activity Description</span>
+                    <div class="input-field">
+                        <input type="text" id="activity_description" name="activity_description" value="${B.activity_description}">
+                    </div>
+                </div>
+
+                <div class="fields">
+                    <span class="title">Tent Start Date</span>
+                    <div class="input-field">
+                        <input type="date" id="tent_start" name="tent_start" value="${B.tent_start}">
+                    </div>
+                </div>
+
+                <div class="fields">
+                    <span class="title">Tent End Date</span>
+                    <div class="input-field">
+                        <input type="date" id="tent_end" name="tent_end" value="${B.tent_end}">
+                    </div>
+                </div>                                              
+                </div>
                 
-            <input type="submit" value="Submit">
+                <div class="col1">
+                <div class="fields">
+                    <span class="title">Actual Start Date</span>
+                    <div class="input-field">
+                        <input type="date" id="act_start" name="act_start" value ="${B.act_start}">
+                    </div>
+                </div>
+
+                <div class="fields">
+                    <span class="title">Actual End Date</span>
+                    <div class="input-field">
+                        <input type="date" id="act_end" name="act_end" value ="${B.act_end}">
+                    </div>
+                </div>
+
+                <div class="fields">
+                    <span class="title">Cost</span>
+                    <div class="input-field">
+                        <input type="text" id="cost" name="cost" value ="${B.cost}">
+                    </div>
+                </div>    
+
+                <div class="fields">
+                    <span class="title">Status</span>
+                    <div class="input-field">
+                        <select name="status" id="type" class="select_class">
+                            <option value="S" ${B.status eq 'S' ? 'selected' : ''}>Scheduled</option>
+                            <option value="O" ${B.status eq 'O' ? 'selected' : ''}>Ongoing</option>
+                            <option value="C" ${B.status eq 'C' ? 'selected' : ''}>Completed</option>
+                        </select>
+                    </div>
+                </div>
+                <input type="submit" value="Submit" class="btn-submit"/>
+                </div>
+            </div>
+            
+            
+            
+            </form>
+        </div>
+        
         </form>
     </body>
 </html>
