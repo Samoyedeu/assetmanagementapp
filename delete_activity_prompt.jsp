@@ -26,7 +26,7 @@
       <form action="deleteassetactivity.jsp" class="form_class">
         <h2 class="titleLabel">Delete Activity</h2>
         <div class="fields">
-          <span class="title">Asset ID</span>
+          <span class="title">Activity Date</span>
           <div class="input-field">
             <select
               id="activity_date"
