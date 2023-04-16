@@ -59,16 +59,19 @@ ccslearner --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
             <span class="title">For Rent?</span>
             <div class="fields">
-              <div class="input-field">
-                <input
-                  type="number"
-                  id="forrent"
-                  name="forrent"
-                  min="0"
-                  max="1"
-                  value="${A.forrent}"
-                />
-              </div>
+                <div class="input-field">
+                    <div id="choice">
+                        <div id="choice1">
+                            <input type="radio" id="Yes" name="forrent" value=1>
+                            <label for="Yes">Yes</label>    
+                        </div>
+                                        
+                        <div id="choice2">
+                            <input type="radio" id="No" name="forrent" value=0>
+                            <label for="No">No</label>    
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="fields">
@@ -137,4 +140,3 @@ ccslearner --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
     </div>
   </body>
 </html>
-

@@ -76,7 +76,7 @@
               <div class="input-field">
                     <div id="choice">
                         <div id="choice1">
-                            <input type="radio" id="Yes" name="isdeleted" value=1>
+                            <input type="radio" id="Yes" name="isdeleted" value=1 checked>
                             <label for="Yes">Yes</label>    
                         </div>
                                         
@@ -94,7 +94,8 @@
               <input type="number" id="approval_hoid" name="approval_hoid" value=""/>
             </div>
           </div>  
-            
+          </div>
+              <div class="col1"> 
           <div class="fields">
             <span class="title">Approval Position</span>
             <div class="input-field">
@@ -120,9 +121,9 @@
             <span class="title">Transaction Type</span>
             <div class="input-field">
               <select name="transaction_type" class="select_class" id="transaction_type">
-                <option value="R">Scheduled</option>
-                <option value="T">Ongoing</option>
-                <option value="A">Completed</option>
+                <option value="R">Rental</option>
+                <option value="T">Transfer</option>
+                <option value="A">Activity</option>
               </select>
             </div>
           </div>
@@ -136,6 +137,25 @@
         </div>
       </form>
     </div>
+    <script>
+        function checkSubmit() {
+            var inputs = document.querySelectorAll('.input-field input, .input-field select');
+            var hasEmpty = false;
+            inputs.forEach(function(input) {
+               if (!input.value && !['approval_hoid', 'approval_position', 'approval_electiondate', 'ornum'].includes(input.id)) {
+                    hasEmpty = true;
+              }
+            });
+            document.querySelector('.btn-submit').disabled = hasEmpty;
+          }
+
+          document.addEventListener('DOMContentLoaded', function() {
+            checkSubmit();
+            document.querySelectorAll('.input-field input, .input-field select').forEach(function(input) {
+              input.addEventListener('input', checkSubmit);
+            });
+          });
+    </script>
   </body>
 </html>
 

@@ -121,6 +121,22 @@ and open the template in the editor.
         </div>
       </form>
     </div>
+    <script>
+        function checkSubmit() {
+            var assetid = document.getElementById('assetid').value;
+            var activity_date = document.getElementById('activity_date').value;
+            var status = document.getElementById('status').value;
+
+            document.querySelector('.btn-submit').disabled = !assetid || !activity_date || !status;
+          }
+
+          document.addEventListener('DOMContentLoaded', function() {
+            checkSubmit();
+            document.querySelectorAll('.input-field input, .input-field select').forEach(function(input) {
+              input.addEventListener('input', checkSubmit);
+            });
+          });
+    </script>
   </body>
 </html>
 
