@@ -67,7 +67,7 @@ and open the template in the editor.
           <div class="fields">
             <span class="title">Tentative Start Date</span>
             <div class="input-field">
-              <input type="date" id="tent_start" name="tent_start" value="2023-04-15"/>
+              <input type="date" id="tent_start" name="tent_start" value="2000-01-01"/>
             </div>
           </div>
 
@@ -75,7 +75,7 @@ and open the template in the editor.
             <span class="title">Tentative End Date</span>
 
             <div class="input-field">
-              <input type="date" id="tent_end" name="tent_end" value="2023-04-15"/>
+              <input type="date" id="tent_end" name="tent_end" value="2000-01-01"/>
             </div>
           </div>
         </div>
@@ -83,14 +83,14 @@ and open the template in the editor.
           <div class="fields">
             <span class="title">Actual Start Date</span>
             <div class="input-field">
-              <input type="date" id="actual_start" name="act_start" value="2023-04-15"/>
+              <input type="date" id="actual_start" name="act_start" value="2000-01-01"/>
             </div>
           </div>
 
           <div class="fields">
             <span class="title">Actual End Date</span>
             <div class="input-field">
-              <input type="date" id="actual_end" name="act_end" value="2023-04-15"/>
+              <input type="date" id="actual_end" name="act_end" value="2000-01-01"/>
             </div>
           </div>
 
@@ -139,5 +139,3 @@ and open the template in the editor.
     </script>
   </body>
 </html>
-
-        

@@ -194,30 +194,121 @@ public class assetactivity {
     }
     
     public int update_activity(){
-        try {
+        try{
+            // this is where we will put codes that will interact with database
+            // 1: Connect to our database
             Connection conn;
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/HOADB?useTimezone=true&serverTimezone=UTC&user=root&password=12345678");
             System.out.println("Connection Successful");
             
-            // 2. Prepare SQL Statement
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE asset_activity SET activity_description = ?, tent_start = ?, tent_end = ?, act_start = ?, act_end = ?, cost = ?, status = ?  WHERE asset_id = ? AND activity_date = ?");
-            pstmt.setString(1, activity_description);
-            pstmt.setDate(2, tent_start);
-            pstmt.setDate(3, tent_end);
-            pstmt.setDate(4, act_start);
-            pstmt.setDate(5, act_end);
-            pstmt.setString(6, cost);
-            pstmt.setString(7, status);
-            pstmt.setInt(8, asset_id);
-            pstmt.setDate(9, activity_date);
-            pstmt.executeUpdate();
+            // 2: Prepare our SQL Statement
+            // 2.1 To get the next Asset Activity ID
             
+
+            // 2.2 Save the new asset 
+            PreparedStatement pstmt = conn.prepareStatement ("UPDATE asset_activity SET status = ? WHERE asset_id = ? AND activity_date = ?");
+            pstmt.setString(1, status);
+            pstmt.setInt(2, asset_id);
+            pstmt.setDate(3, activity_date);
+            pstmt.executeUpdate();
             pstmt.close();
+            
+            if(activity_description != ""){
+            PreparedStatement pstmt2 = conn.prepareStatement ("UPDATE asset_activity SET activity_description = ? WHERE asset_id = ? AND activity_date = ?");
+            pstmt2.setString(1, activity_description);
+            pstmt2.setInt(2, asset_id);
+            pstmt2.setDate(3, activity_date);
+            pstmt2.executeUpdate();
+            pstmt2.close();
+            }
+            
+            if(tent_start.compareTo(java.sql.Date.valueOf("2000-01-01")) == 0){
+                PreparedStatement pstmt3 = conn.prepareStatement ("UPDATE asset_activity SET tent_start = ? WHERE asset_id = ? AND activity_date = ?");
+                tent_start = null;
+                pstmt3.setDate(1, tent_start);
+                pstmt3.setInt(2, asset_id);
+                pstmt3.setDate(3, activity_date);
+                pstmt3.executeUpdate();
+                pstmt3.close();
+            } else {
+                PreparedStatement pstmt3 = conn.prepareStatement ("UPDATE asset_activity SET tent_start = ? WHERE asset_id = ? AND activity_date = ?");
+                
+                pstmt3.setDate(1, tent_start);
+                pstmt3.setInt(2, asset_id);
+                pstmt3.setDate(3, activity_date);
+                pstmt3.executeUpdate();
+                pstmt3.close();
+            }
+            
+            if(tent_end.compareTo(java.sql.Date.valueOf("2000-01-01")) == 0){
+                PreparedStatement pstmt4 = conn.prepareStatement ("UPDATE asset_activity SET tent_end = ? WHERE asset_id = ? AND activity_date = ?");
+                tent_end = null;
+                pstmt4.setDate(1, tent_end);
+                pstmt4.setInt(2, asset_id);
+                pstmt4.setDate(3, activity_date);
+                pstmt4.executeUpdate();
+                pstmt4.close();
+            } else {
+                PreparedStatement pstmt4 = conn.prepareStatement ("UPDATE asset_activity SET tent_end = ? WHERE asset_id = ? AND activity_date = ?");
+                
+                pstmt4.setDate(1, tent_end);
+                pstmt4.setInt(2, asset_id);
+                pstmt4.setDate(3, activity_date);
+                pstmt4.executeUpdate();
+                pstmt4.close();
+            }
+            
+            if(act_start.compareTo(java.sql.Date.valueOf("2000-01-01")) == 0){
+                PreparedStatement pstmt5 = conn.prepareStatement ("UPDATE asset_activity SET act_start = ? WHERE asset_id = ? AND activity_date = ?");
+                act_start = null;
+                pstmt5.setDate(1, act_start);
+                pstmt5.setInt(2, asset_id);
+                pstmt5.setDate(3, activity_date);
+                pstmt5.executeUpdate();
+                pstmt5.close();
+            } else {
+                PreparedStatement pstmt5 = conn.prepareStatement ("UPDATE asset_activity SET act_start = ? WHERE asset_id = ? AND activity_date = ?");
+                pstmt5.setDate(1, act_start);
+                pstmt5.setInt(2, asset_id);
+                pstmt5.setDate(3, activity_date);
+                pstmt5.executeUpdate();
+                pstmt5.close();
+            }
+                  
+            
+            if(act_end.compareTo(java.sql.Date.valueOf("2000-01-01")) == 0){
+                PreparedStatement pstmt6 = conn.prepareStatement ("UPDATE asset_activity SET act_end = ? WHERE asset_id = ? AND activity_date = ?");
+                act_end = null;
+                pstmt6.setDate(1, act_end);
+                pstmt6.setInt(2, asset_id);
+                pstmt6.setDate(3, activity_date);
+                pstmt6.executeUpdate();
+                pstmt6.close();
+            } else {
+                PreparedStatement pstmt6 = conn.prepareStatement ("UPDATE asset_activity SET act_end = ? WHERE asset_id = ? AND activity_date = ?");
+                pstmt6.setDate(1, act_end);
+                pstmt6.setInt(2, asset_id);
+                pstmt6.setDate(3, activity_date);
+                pstmt6.executeUpdate();
+                pstmt6.close();
+            }
+            
+            if(cost != ""){
+            PreparedStatement pstmt7 = conn.prepareStatement ("UPDATE asset_activity SET cost = ? WHERE asset_id = ? AND activity_date = ?");
+            pstmt7.setString(1, cost);
+            pstmt7.setInt(2, asset_id);
+            pstmt7.setDate(3, activity_date);
+            pstmt7.executeUpdate();
+            pstmt7.close();
+            }
+
             conn.close();
             System.out.println("Successful");
-            
             return 1;
-        } catch (Exception e){
+                    
+            
+                
+        } catch(Exception e){
             System.out.println(e.getMessage());
             return 0;
         }
@@ -254,7 +345,25 @@ public class assetactivity {
                 act_end = rst.getDate("act_end");
                 cost = rst.getString("cost");
                 status = rst.getString("status");
-            
+                
+                if(tent_start == null){
+                    tent_start = java.sql.Date.valueOf("2000-01-01");
+                }
+                
+                if(tent_end == null){
+                    tent_end = java.sql.Date.valueOf("2000-01-01");
+                }
+                
+                if(act_start == null){
+                    act_start = java.sql.Date.valueOf("2000-01-01");
+                }
+                
+                if(act_end == null){
+                    act_end = java.sql.Date.valueOf("2000-01-01");
+                }
+                
+                
+                
                 activity_descriptionList.add(activity_description);
                 tent_startList.add(tent_start);
                 tent_endList.add(tent_end);
@@ -417,7 +526,7 @@ public class assetactivity {
             pstmt2.close();
             }
             
-            if(tent_start.compareTo(java.sql.Date.valueOf("2023-04-15")) == 0){
+            if(tent_start.compareTo(java.sql.Date.valueOf("2000-01-01")) == 0){
                 PreparedStatement pstmt3 = conn.prepareStatement ("UPDATE asset_activity SET tent_start = ? WHERE asset_id = ? AND activity_date = ?");
                 tent_start = null;
                 pstmt3.setDate(1, tent_start);
@@ -435,7 +544,7 @@ public class assetactivity {
                 pstmt3.close();
             }
             
-            if(tent_end.compareTo(java.sql.Date.valueOf("2023-04-15")) == 0){
+            if(tent_end.compareTo(java.sql.Date.valueOf("2000-01-01")) == 0){
                 PreparedStatement pstmt4 = conn.prepareStatement ("UPDATE asset_activity SET tent_end = ? WHERE asset_id = ? AND activity_date = ?");
                 tent_end = null;
                 pstmt4.setDate(1, tent_end);
@@ -453,7 +562,7 @@ public class assetactivity {
                 pstmt4.close();
             }
             
-            if(act_start.compareTo(java.sql.Date.valueOf("2023-04-15")) == 0){
+            if(act_start.compareTo(java.sql.Date.valueOf("2000-01-01")) == 0){
                 PreparedStatement pstmt5 = conn.prepareStatement ("UPDATE asset_activity SET act_start = ? WHERE asset_id = ? AND activity_date = ?");
                 act_start = null;
                 pstmt5.setDate(1, act_start);
@@ -471,7 +580,7 @@ public class assetactivity {
             }
                   
             
-            if(act_end.compareTo(java.sql.Date.valueOf("2023-04-15")) == 0){
+            if(act_end.compareTo(java.sql.Date.valueOf("2000-01-01")) == 0){
                 PreparedStatement pstmt6 = conn.prepareStatement ("UPDATE asset_activity SET act_end = ? WHERE asset_id = ? AND activity_date = ?");
                 act_end = null;
                 pstmt6.setDate(1, act_end);

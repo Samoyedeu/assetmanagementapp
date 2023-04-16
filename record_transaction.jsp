@@ -106,7 +106,7 @@
           <div class="fields">
             <span class="title">Approval Election Date</span>
             <div class="input-field">
-              <input type="date" id="approval_electiondate" name="approval_electiondate" value="2023-04-15"/>
+              <input type="date" id="approval_electiondate" name="approval_electiondate" value="2000-01-01"/>
             </div>
           </div>
               

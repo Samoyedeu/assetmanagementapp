@@ -193,7 +193,7 @@ public class transaction {
                 pstmt3.close();
             }
             
-            if(approval_electiondate.compareTo(java.sql.Date.valueOf("2023-04-15")) == 0){
+            if(approval_electiondate.compareTo(java.sql.Date.valueOf("2000-01-01")) == 0){
                 PreparedStatement pstmt4 = conn.prepareStatement ("UPDATE asset_transactions SET approval_electiondate = ? WHERE asset_id = ? AND transaction_date = ?");
                 approval_electiondate = null;
                 pstmt4.setDate(1, approval_electiondate);

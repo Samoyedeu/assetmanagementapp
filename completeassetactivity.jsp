@@ -21,7 +21,7 @@
                     B.assetactivity_for_completion();
                     for(int i = 0; i < B.activity_dateList.size(); i++){
                 %>
-                <option value="<%=A.asset_idList.get(i)%>"><%=B.activity_descriptionList.get(i)%></option>
+                <option value="<%=B.asset_idList.get(i)%>"><%=B.activity_descriptionList.get(i)%></option>
                 <%
                     }
                 %>
